@@ -24,7 +24,11 @@
                 <Label Content="Логин" HorizontalAlignment="Center" Height="30" Foreground="White" FontFamily="Times New Roman" FontSize="18"/>
                 <TextBox Text="{Binding User.Login}" HorizontalAlignment="Center" Height="30" Width="200" FontFamily="Cascadia Mono" FontSize="18" Background="#FFC3C3C3"/>
                 <Label Content="Пароль" HorizontalAlignment="Center" Height="30" Foreground="White" FontFamily="Times New Roman" FontSize="18"/>
-                <TextBox Text="{Binding User.Password}" HorizontalAlignment="Center" Height="30" Width="200" FontFamily="Cascadia Mono" FontSize="18" Background="#FFC3C3C3"/>
+                <TextBox Text="{Binding User.Password}" HorizontalAlignment="Center" Height="30" Width="200" FontFamily="Cascadia Mono" FontSize="18" Background="#FFC3C3C3">
+                    <TextBox.Effect>
+                        <BlurEffect/>
+                    </TextBox.Effect>
+                </TextBox>
                 <Button Content="Войти" Command="{Binding ExecuteCommand}" Width="150" Height="35" Margin="5 110 5 5" Opacity="0.5" FontFamily="Times New Roman" FontSize="20" Foreground="#FF0004FF">
                     <Button.Effect>
                         <DropShadowEffect/>

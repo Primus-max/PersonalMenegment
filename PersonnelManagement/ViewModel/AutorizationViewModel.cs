@@ -42,7 +42,7 @@ namespace PersonnelManagement.ViewModel
 
             if(temp == null)
             {
-                Message("Логин и/или пароль неправильный");
+                Message("Неправильный логин или пароль");
                 return;
             }
 

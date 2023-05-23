@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelManagement" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" FontFamily="Cascadia Mono" FontSize="16">
+        Title="Главное окно" Height="450" Width="800" FontFamily="Cascadia Mono" FontSize="16">
     <Grid>
         <TabControl Visibility="{Binding IsAdmin}">
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock Text="Работники" FontSize="20"/>
+                    <TextBlock Text="Сотруднки" FontSize="20"/>
                 </TabItem.Header>
                 <TabItem.Content>
                     <Grid>
@@ -77,7 +77,7 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock Text="Проекты работников" FontSize="20"/>
+                    <TextBlock Text="Проекты сотрудников" FontSize="20"/>
                 </TabItem.Header>
                 <TabItem.Content>
                     <Grid>
@@ -89,7 +89,7 @@
                         <DataGrid ItemsSource="{Binding ProjectsWorkers}" SelectedValue="{Binding SelectProjectsWorker}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Название проекта" Binding="{Binding Projects.Title}" Width="*"/>
-                                <DataGridTextColumn Header="Работник" Binding="{Binding Worker.FullName}" Width="*"/>
+                                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Worker.FullName}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         
@@ -228,7 +228,7 @@
                         <TextBlock Text="{Binding InputUsers.Worker.Department.Title}" Grid.Row="1" Grid.Column="1" Margin="5" FontSize="20"/>
                         <TextBlock Text="{Binding InputUsers.Worker.Position.Title}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="20"/>
 
-                        <DataGrid Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding UserProject}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                        <DataGrid Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding UserProject}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5" Background="#FF7357FF">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Участие в проекте" Binding="{Binding Projects.Title}" Width="*"/>
                             </DataGrid.Columns>

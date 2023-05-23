@@ -357,7 +357,7 @@ namespace PersonnelManagement.ViewModel
         {
             if(SelectProjectsWorker == null)
             {
-                Message("Проект работника не выбран");
+                Message("Проект сотрудника не выбран");
                 return;
             }
 
@@ -371,7 +371,7 @@ namespace PersonnelManagement.ViewModel
         {
             if (SelectProjectsWorker == null)
             {
-                Message("Проект работника не выбран");
+                Message("Проект сотрудника не выбран");
                 return;
             }
 
@@ -443,7 +443,7 @@ namespace PersonnelManagement.ViewModel
         {
             if(SelectWorkers == null)
             {
-                Message("Работика не выбран");
+                Message("Сотрудник не выбран");
                 return;
             }
 
@@ -459,7 +459,7 @@ namespace PersonnelManagement.ViewModel
         {
             if(SelectWorkers == null)
             {
-                Message("Работика не выбран");
+                Message("Сотрудник не выбран");
                 return;
             }
 
