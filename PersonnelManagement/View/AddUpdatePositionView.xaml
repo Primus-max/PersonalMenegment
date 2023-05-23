@@ -1,0 +1,25 @@
+﻿<Window x:Class="PersonnelManagement.View.AddUpdatePositionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PersonnelManagement.View" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdatePositionViewModel}"
+        mc:Ignorable="d"
+        Title="AddUpdatePositionView" Height="150" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Название" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
+
+        <TextBox Text="{Binding Position.Title}" Grid.Column="1" Margin="5" FontSize="20"/>
+
+        <Button Content="{Binding Action}" Command="{Binding ExecuteCommand}" FontSize="20" Margin="5" Grid.Row="1" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>
