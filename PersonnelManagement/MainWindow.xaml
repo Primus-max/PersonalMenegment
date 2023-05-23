@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelManagement" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowState="Maximized">
+        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" FontFamily="Cascadia Mono" FontSize="16">
     <Grid>
         <TabControl Visibility="{Binding IsAdmin}">
             <TabItem>

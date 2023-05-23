@@ -5,23 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelManagement.View" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AutorizationViewModel}"
         mc:Ignorable="d"
-        Title="AutorizationView" Height="200" Width="600" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Авторизация" 
+        Height="500" Width="450"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid Opacity="0.9">
+        <Grid.Background>
+            <ImageBrush ImageSource="\Resources\phone.jpg" Stretch="Fill" TileMode="None"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
-        <Label Content="Логин" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" FontSize="20"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" FontSize="20"/>
-
-        <TextBox Text="{Binding User.Login}" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="20"/>
-        <TextBox Text="{Binding User.Password}" Grid.Row="1" Grid.Column="1" Margin="5" FontSize="20"/>
-
-        <Button Content="Войти" Command="{Binding ExecuteCommand}" Grid.Row="2" Grid.ColumnSpan="2" FontSize="20" Margin="5"/>
+   
+        <Grid Grid.Row="1">
+            <StackPanel>
+                <Label Content="Логин" HorizontalAlignment="Center" Height="30" Foreground="White" FontFamily="Times New Roman" FontSize="18"/>
+                <TextBox Text="{Binding User.Login}" HorizontalAlignment="Center" Height="30" Width="200" FontFamily="Cascadia Mono" FontSize="18" Background="#FFC3C3C3"/>
+                <Label Content="Пароль" HorizontalAlignment="Center" Height="30" Foreground="White" FontFamily="Times New Roman" FontSize="18"/>
+                <TextBox Text="{Binding User.Password}" HorizontalAlignment="Center" Height="30" Width="200" FontFamily="Cascadia Mono" FontSize="18" Background="#FFC3C3C3"/>
+                <Button Content="Войти" Command="{Binding ExecuteCommand}" Width="150" Height="35" Margin="5 110 5 5" Opacity="0.5" FontFamily="Times New Roman" FontSize="20" Foreground="#FF0004FF">
+                    <Button.Effect>
+                        <DropShadowEffect/>
+                    </Button.Effect>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

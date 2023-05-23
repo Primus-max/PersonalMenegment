@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelManagement.View" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdateUserViewModel}"
         mc:Ignorable="d"
-        Title="AddUpdateUserView" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="AddUpdateUserView" Height="350" Width="650" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -16,33 +16,33 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Работник" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Роль" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="1"/>
-        <Label Content="Логин" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="2"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="3"/>
+        <Label Content="Работник" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono"/>
+        <Label Content="Роль" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="1"/>
+        <Label Content="Логин" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="2"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="3"/>
 
-        <ComboBox ItemsSource="{Binding Workers}" SelectedValue="{Binding SelectWorker}" Grid.Row="0" Grid.Column="1" Margin="5">
+        <ComboBox ItemsSource="{Binding Workers}" SelectedValue="{Binding SelectWorker}" Grid.Row="0" Grid.Column="1" Margin="5 20 5 20">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding FullName}" FontSize="20"/>
+                    <TextBlock Text="{Binding FullName}" FontSize="20" FontFamily="Cascadia Mono"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ComboBox ItemsSource="{Binding Roles}" SelectedValue="{Binding SelectRoles}" Grid.Row="1" Grid.Column="1" Margin="5">
+        <ComboBox ItemsSource="{Binding Roles}" SelectedValue="{Binding SelectRoles}" Grid.Row="1" Grid.Column="1" Margin="5 20 5 20">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Title}" FontSize="20"/>
+                    <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Cascadia Mono"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <TextBox Text="{Binding Users.Login}" Grid.Row="2" Grid.Column="1" FontSize="20" Margin="5"/>
-        <TextBox Text="{Binding Users.Password}" Grid.Row="3" Grid.Column="1" FontSize="20" Margin="5"/>
+        <TextBox Text="{Binding Users.Login}" Grid.Row="2" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 20 5 20"/>
+        <TextBox Text="{Binding Users.Password}" Grid.Row="3" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 20 5 20"/>
 
-        <Button Content="{Binding Action}" Command="{Binding ExecuteCommand}" FontSize="20" Margin="5" Grid.Row="5" Grid.ColumnSpan="2"/>
+        <Button Content="{Binding Action}" Command="{Binding ExecuteCommand}" FontSize="20" FontFamily="Cascadia Mono" Margin="200 5 200 5" Grid.Row="5" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

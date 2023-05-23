@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelManagement.View" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdateDepartmentViewModel}"
         mc:Ignorable="d"
-        Title="AddUpdateDepartmentView" Height="150" Width="600" WindowStartupLocation="CenterScreen">
+        Title="AddUpdateDepartmentView" Height="165" Width="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -16,10 +16,10 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Название" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Название" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono"/>
 
-        <TextBox Text="{Binding Department.Title}" Grid.Column="1" Margin="5" FontSize="20"/>
+        <TextBox Text="{Binding Department.Title}" Grid.Column="1" Margin="5 25 5 25" FontSize="18" FontFamily="Cascadia Mono" />
 
-        <Button Content="{Binding Action}" Command="{Binding ExcecuteCommand}" FontSize="20" Margin="5" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button Content="{Binding Action}" Command="{Binding ExcecuteCommand}" FontSize="20" FontFamily="Cascadia Mono" Margin="200 10 200 10" Grid.Row="1" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

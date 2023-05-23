@@ -17,25 +17,25 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Проект" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Работник" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="1"/>
+        <Label Content="Проект" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono"/>
+        <Label Content="Работник" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="1"/>
 
-        <ComboBox ItemsSource="{Binding Projects}" SelectedValue="{Binding SelectProjects}" Grid.Row="0" Grid.Column="1" Margin="5">
+        <ComboBox ItemsSource="{Binding Projects}" SelectedValue="{Binding SelectProjects}" Grid.Row="0" Grid.Column="1" Margin="5 25 5 25">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Title}" FontSize="20"/>
+                    <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Cascadia Mono"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ComboBox ItemsSource="{Binding Workers}" SelectedValue="{Binding SelectWorker}" Grid.Row="1" Grid.Column="1" Margin="5">
+        <ComboBox ItemsSource="{Binding Workers}" SelectedValue="{Binding SelectWorker}" Grid.Row="1" Grid.Column="1" Margin="5 25 5 25">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding FullName}" FontSize="20"/>
+                    <TextBlock Text="{Binding FullName}" FontSize="20" FontFamily="Cascadia Mono"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        
-        <Button Content="{Binding Action}" Command="{Binding ExecuteCommand}" FontSize="20" Margin="5" Grid.Row="2" Grid.ColumnSpan="2"/>
+
+        <Button Content="{Binding Action}" Command="{Binding ExecuteCommand}" FontSize="20" FontFamily="Cascadia Mono" Margin="200 10 200 10" Grid.Row="2" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
