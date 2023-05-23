@@ -24,7 +24,7 @@
         <Label Content="Логин" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="2"/>
         <Label Content="Пароль" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="3"/>
 
-        <ComboBox ItemsSource="{Binding Workers}" SelectedValue="{Binding SelectWorker}" Grid.Row="0" Grid.Column="1" Margin="5 20 5 20">
+        <ComboBox ItemsSource="{Binding Workers}" SelectedValue="{Binding SelectWorker}" Grid.Row="0" Grid.Column="1" Margin="5 18 5 18">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding FullName}" FontSize="20" FontFamily="Cascadia Mono"/>
@@ -32,7 +32,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ComboBox ItemsSource="{Binding Roles}" SelectedValue="{Binding SelectRoles}" Grid.Row="1" Grid.Column="1" Margin="5 20 5 20">
+        <ComboBox ItemsSource="{Binding Roles}" SelectedValue="{Binding SelectRoles}" Grid.Row="1" Grid.Column="1" Margin="5 18 5 18">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Cascadia Mono"/>
@@ -40,8 +40,8 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <TextBox Text="{Binding Users.Login}" Grid.Row="2" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 20 5 20"/>
-        <TextBox Text="{Binding Users.Password}" Grid.Row="3" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 20 5 20"/>
+        <TextBox Text="{Binding Users.Login}" Grid.Row="2" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 18 5 18"/>
+        <TextBox Text="{Binding Users.Password}" Grid.Row="3" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 18 5 18"/>
 
         <Button Content="{Binding Action}" Command="{Binding ExecuteCommand}" FontSize="20" FontFamily="Cascadia Mono" Margin="200 5 200 5" Grid.Row="5" Grid.ColumnSpan="2"/>
     </Grid>
