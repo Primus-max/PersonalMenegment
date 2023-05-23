@@ -229,9 +229,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\123.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\phone.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
