@@ -27,7 +27,7 @@ namespace PersonnelManagement.Model.DB
             dt.Clear();
             SqlCommand command = new SqlCommand(sqlCommand, connection);
             SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-            dataAdapter.Fill(dt);
+            //dataAdapter.Fill(dt);
         }
 
         //открываем подключение к БД
