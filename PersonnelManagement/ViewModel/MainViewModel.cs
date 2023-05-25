@@ -197,7 +197,7 @@ namespace PersonnelManagement.ViewModel
             _data = data;
 
 
-            if(users.RoleID == 1)
+            if(true)
             {
                 IsAdmin = Visibility.Visible;
                 IsUser = Visibility.Collapsed;
