@@ -43,6 +43,13 @@
         <TextBox Text="{Binding Users.Login}" Grid.Row="2" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 18 5 18"/>
         <TextBox Text="{Binding Users.Password}" Grid.Row="3" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 18 5 18"/>
 
-        <Button Content="{Binding Action}" Command="{Binding ExecuteCommand}" FontSize="20" FontFamily="Cascadia Mono" Margin="200 5 200 5" Grid.Row="5" Grid.ColumnSpan="2"/>
+        <Button 
+            Content="{Binding Action}" 
+            Command="{Binding ExecuteCommand}" 
+            FontSize="20" 
+            FontFamily="Cascadia 
+            Mono" Margin="200 5 200 5" 
+            Grid.Row="5" Grid.ColumnSpan="2"
+            Style="{StaticResource MaterialDesignPaperLightButton}" />
     </Grid>
 </Window>

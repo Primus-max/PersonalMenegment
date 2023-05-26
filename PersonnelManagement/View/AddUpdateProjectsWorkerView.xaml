@@ -36,6 +36,14 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <Button Content="{Binding Action}" Command="{Binding ExecuteCommand}" FontSize="20" FontFamily="Cascadia Mono" Margin="200 10 200 10" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <Button 
+            Content="{Binding Action}" 
+            Command="{Binding ExecuteCommand}" 
+            FontSize="20" 
+            FontFamily="Cascadia Mono" 
+            Margin="200 10 200 10" 
+            Grid.Row="2" 
+            Grid.ColumnSpan="2"
+            Style="{StaticResource MaterialDesignPaperLightButton}" />
     </Grid>
 </Window>

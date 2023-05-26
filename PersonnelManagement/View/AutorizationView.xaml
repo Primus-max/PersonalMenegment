@@ -29,7 +29,17 @@
                         <BlurEffect/>
                     </TextBox.Effect>
                 </TextBox>
-                <Button Content="Войти" Command="{Binding ExecuteCommand}" Width="150" Height="35" Margin="5 110 5 5" Opacity="0.5" FontFamily="Times New Roman" FontSize="20" Foreground="#FF0004FF">
+                <Button 
+                    Content="Войти" 
+                    Command="{Binding ExecuteCommand}" 
+                    Width="150" 
+                    Height="35" 
+                    Margin="5 110 5 5" 
+                    Opacity="0.5" 
+                    FontFamily="Times New Roman" 
+                    FontSize="20" 
+                    Foreground="#FF0004FF"
+                    Style="{StaticResource MaterialDesignPaperLightButton}" >
                     <Button.Effect>
                         <DropShadowEffect/>
                     </Button.Effect>

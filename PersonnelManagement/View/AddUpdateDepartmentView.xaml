@@ -20,6 +20,13 @@
 
         <TextBox Text="{Binding Department.Title}" Grid.Column="1" Margin="5 25 5 25" FontSize="18" FontFamily="Cascadia Mono" />
 
-        <Button Content="{Binding Action}" Command="{Binding ExcecuteCommand}" FontSize="20" FontFamily="Cascadia Mono" Margin="190 10 190 10" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button 
+            Content="{Binding Action}" 
+            Command="{Binding ExcecuteCommand}" 
+            FontSize="20" FontFamily="Cascadia Mono" 
+            Margin="190 10 190 10" 
+            Grid.Row="1" 
+            Grid.ColumnSpan="2"
+            Style="{StaticResource MaterialDesignPaperLightButton}" />
     </Grid>
 </Window>

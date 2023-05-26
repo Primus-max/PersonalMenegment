@@ -5,22 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-     TextElement.FontWeight="Regular"
-     TextElement.FontSize="13"
-     TextOptions.TextFormattingMode="Ideal"
-     TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
-     
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"     
         
         xmlns:local="clr-namespace:PersonnelManagement" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontFamily="Cascadia Mono" FontSize="16">
+        Title="Менеджер по персоналу" 
+        Height="450" 
+        Width="800" 
+        FontFamily="Cascadia Mono" 
+        FontSize="16">    
     <Grid>
-        <TabControl Visibility="{Binding IsAdmin}">
+        <TabControl Visibility="{Binding IsAdmin}" TabStripPlacement="Left">
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock Text="Сотруднки" FontSize="20"/>
+                    <TextBlock Text="Сотрудники" FontSize="20"/>
                 </TabItem.Header>
                 <TabItem.Content>
                     <Grid>
@@ -44,9 +47,26 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="Добавить" Command="{Binding AddWorkerCommand}" Grid.Column="0" Margin="5" FontSize="20"/>
-                            <Button Content="Обновить" Command="{Binding UpdateWorkerCommand}" Grid.Column="1" Margin="5" FontSize="20"/>
-                            <Button Content="Удалить" Command="{Binding RemoveWorkerCommand}" Grid.Column="2" Margin="5" FontSize="20"/>
+                            <Button Content="Добавить" 
+                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Grid.Column="0" 
+                                    Margin="5" 
+                                    FontSize="20"
+                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
+                            <Button 
+                                Content="Обновить" 
+                                Command="{Binding UpdateProjectsWorkerCommand}" 
+                                Grid.Column="1" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                            <Button 
+                                Content="Удалить" 
+                                Command="{Binding RemoveProjectsWorkerCommand}" 
+                                Grid.Column="2" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
                         </Grid>
                     </Grid>
                 </TabItem.Content>
@@ -78,9 +98,26 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="Добавить" Command="{Binding AddUserCommand}" Grid.Column="0" Margin="5" FontSize="20"/>
-                            <Button Content="Обновить" Command="{Binding UpdateUserCommand}" Grid.Column="1" Margin="5" FontSize="20"/>
-                            <Button Content="Удалить" Command="{Binding RemoveUserCommand}" Grid.Column="2" Margin="5" FontSize="20"/>
+                            <Button Content="Добавить" 
+                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Grid.Column="0" 
+                                    Margin="5" 
+                                    FontSize="20"
+                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
+                            <Button 
+                                Content="Обновить" 
+                                Command="{Binding UpdateProjectsWorkerCommand}" 
+                                Grid.Column="1" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                            <Button 
+                                Content="Удалить" 
+                                Command="{Binding RemoveProjectsWorkerCommand}" 
+                                Grid.Column="2" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
                         </Grid>
                     </Grid>
                 </TabItem.Content>
@@ -110,9 +147,26 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="Добавить" Command="{Binding AddProjectsWorkerCommand}" Grid.Column="0" Margin="5" FontSize="20"/>
-                            <Button Content="Обновить" Command="{Binding UpdateProjectsWorkerCommand}" Grid.Column="1" Margin="5" FontSize="20"/>
-                            <Button Content="Удалить" Command="{Binding RemoveProjectsWorkerCommand}" Grid.Column="2" Margin="5" FontSize="20"/>
+                            <Button Content="Добавить" 
+                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Grid.Column="0" 
+                                    Margin="5" 
+                                    FontSize="20"
+                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
+                            <Button 
+                                Content="Обновить" 
+                                Command="{Binding UpdateProjectsWorkerCommand}" 
+                                Grid.Column="1" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                            <Button 
+                                Content="Удалить" 
+                                Command="{Binding RemoveProjectsWorkerCommand}" 
+                                Grid.Column="2" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
                         </Grid>
                     </Grid>
                 </TabItem.Content>
@@ -141,9 +195,26 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="Добавить" Command="{Binding AddProjectsCommand}" Grid.Column="0" Margin="5" FontSize="20"/>
-                            <Button Content="Обновить" Command="{Binding UpdateProjectsCommand}" Grid.Column="1" Margin="5" FontSize="20"/>
-                            <Button Content="Удалить" Command="{Binding RemoveProjectsCommand}" Grid.Column="2" Margin="5" FontSize="20"/>
+                            <Button Content="Добавить" 
+                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Grid.Column="0" 
+                                    Margin="5" 
+                                    FontSize="20"
+                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
+                            <Button 
+                                Content="Обновить" 
+                                Command="{Binding UpdateProjectsWorkerCommand}" 
+                                Grid.Column="1" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                            <Button 
+                                Content="Удалить" 
+                                Command="{Binding RemoveProjectsWorkerCommand}" 
+                                Grid.Column="2" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
                         </Grid>
                     </Grid>
                 </TabItem.Content>
@@ -172,9 +243,26 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="Добавить" Command="{Binding AddDepartmentCommand}" Grid.Column="0" Margin="5" FontSize="20" FontFamily="Cascadia Mono"/>
-                            <Button Content="Обновить" Command="{Binding UpdateDepartmentCommand}" Grid.Column="1" Margin="5" FontSize="20" FontFamily="Cascadia Mono"/>
-                            <Button Content="Удалить" Command="{Binding RemoveDepartmentCommand}" Grid.Column="2" Margin="5" FontSize="20" FontFamily="Cascadia Mono"/>
+                            <Button Content="Добавить" 
+                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Grid.Column="0" 
+                                    Margin="5" 
+                                    FontSize="20"
+                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
+                            <Button 
+                                Content="Обновить" 
+                                Command="{Binding UpdateProjectsWorkerCommand}" 
+                                Grid.Column="1" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                            <Button 
+                                Content="Удалить" 
+                                Command="{Binding RemoveProjectsWorkerCommand}" 
+                                Grid.Column="2" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
                         </Grid>
                     </Grid>
                 </TabItem.Content>
@@ -203,9 +291,26 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="Добавить" Command="{Binding AddPositionCommand}" Grid.Column="0" Margin="5" FontSize="20"/>
-                            <Button Content="Обновить" Command="{Binding UpdatePositionCommand}" Grid.Column="1" Margin="5" FontSize="20"/>
-                            <Button Content="Удалить" Command="{Binding RemovePositionCommand}" Grid.Column="2" Margin="5" FontSize="20"/>
+                            <Button Content="Добавить" 
+                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Grid.Column="0" 
+                                    Margin="5" 
+                                    FontSize="20"
+                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
+                            <Button 
+                                Content="Обновить" 
+                                Command="{Binding UpdateProjectsWorkerCommand}" 
+                                Grid.Column="1" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                            <Button 
+                                Content="Удалить" 
+                                Command="{Binding RemoveProjectsWorkerCommand}" 
+                                Grid.Column="2" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
                         </Grid>
                     </Grid>
                 </TabItem.Content>
