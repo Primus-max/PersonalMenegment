@@ -18,14 +18,15 @@
         Height="450" 
         Width="800" 
         FontFamily="Cascadia Mono" 
-        FontSize="16">    
+        FontSize="16">
+    <Border Padding="5">
     <Grid>
-        <TabControl Visibility="{Binding IsAdmin}" TabStripPlacement="Left">
+        <TabControl Visibility="{Binding IsAdmin}" TabStripPlacement="Left" >
             <TabItem>
-                <TabItem.Header>
-                    <TextBlock Text="Сотрудники" FontSize="20"/>
-                </TabItem.Header>
-                <TabItem.Content>
+                    <TabItem.Header>
+                        <TextBlock Text="Сотрудники" FontSize="16" />
+                    </TabItem.Header>
+                    <TabItem.Content>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -71,10 +72,10 @@
                     </Grid>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <TextBlock Text="Пользователь" FontSize="20"/>
-                </TabItem.Header>
+            <TabItem>                
+                <TabItem.Header>                        
+                            <TextBlock Text="Пользователь" FontSize="16" />
+                    </TabItem.Header>
                 <TabItem.Content>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -122,106 +123,9 @@
                     </Grid>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem >
                 <TabItem.Header>
-                    <TextBlock Text="Проекты сотрудников" FontSize="20"/>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="50"/>
-                        </Grid.RowDefinitions>
-
-                        <DataGrid ItemsSource="{Binding ProjectsWorkers}" SelectedValue="{Binding SelectProjectsWorker}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Название проекта" Binding="{Binding Projects.Title}" Width="*"/>
-                                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Worker.FullName}" Width="*"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Button Content="Добавить" 
-                                    Command="{Binding AddProjectsWorkerCommand}" 
-                                    Grid.Column="0" 
-                                    Margin="5" 
-                                    FontSize="20"
-                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
-                            <Button 
-                                Content="Обновить" 
-                                Command="{Binding UpdateProjectsWorkerCommand}" 
-                                Grid.Column="1" 
-                                Margin="5" 
-                                FontSize="20"
-                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
-                            <Button 
-                                Content="Удалить" 
-                                Command="{Binding RemoveProjectsWorkerCommand}" 
-                                Grid.Column="2" 
-                                Margin="5" 
-                                FontSize="20"
-                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
-                        </Grid>
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <TextBlock Text="Проекты" FontSize="20"/>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="50"/>
-                        </Grid.RowDefinitions>
-
-                        <DataGrid ItemsSource="{Binding Projects}" SelectedValue="{Binding SelectProjects}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Button Content="Добавить" 
-                                    Command="{Binding AddProjectsWorkerCommand}" 
-                                    Grid.Column="0" 
-                                    Margin="5" 
-                                    FontSize="20"
-                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
-                            <Button 
-                                Content="Обновить" 
-                                Command="{Binding UpdateProjectsWorkerCommand}" 
-                                Grid.Column="1" 
-                                Margin="5" 
-                                FontSize="20"
-                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
-                            <Button 
-                                Content="Удалить" 
-                                Command="{Binding RemoveProjectsWorkerCommand}" 
-                                Grid.Column="2" 
-                                Margin="5" 
-                                FontSize="20"
-                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
-                        </Grid>
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <TextBlock Text="Отделы" FontSize="20"/>
+                    <TextBlock Text="Отделы" FontSize="16"/>
                 </TabItem.Header>
                 <TabItem.Content>
                     <Grid>
@@ -269,7 +173,7 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock Text="Должности" FontSize="20"/>
+                    <TextBlock Text="Должности" FontSize="16"/>
                 </TabItem.Header>
                 <TabItem.Content>
                     <Grid>
@@ -315,7 +219,104 @@
                     </Grid>
                 </TabItem.Content>
             </TabItem>
-        </TabControl>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Width="Auto" Text="Проекты" FontSize="16" />
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+
+                            <DataGrid ItemsSource="{Binding Projects}" SelectedValue="{Binding SelectProjects}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Content="Добавить" 
+                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Grid.Column="0" 
+                                    Margin="5" 
+                                    FontSize="20"
+                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
+                                <Button 
+                                Content="Обновить" 
+                                Command="{Binding UpdateProjectsWorkerCommand}" 
+                                Grid.Column="1" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                                <Button 
+                                Content="Удалить" 
+                                Command="{Binding RemoveProjectsWorkerCommand}" 
+                                Grid.Column="2" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Text="Проекты сотрудников" FontSize="16"/>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+
+                            <DataGrid ItemsSource="{Binding ProjectsWorkers}" SelectedValue="{Binding SelectProjectsWorker}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Название проекта" Binding="{Binding Projects.Title}" Width="*"/>
+                                    <DataGridTextColumn Header="Сотрудник" Binding="{Binding Worker.FullName}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Content="Добавить" 
+                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Grid.Column="0" 
+                                    Margin="5" 
+                                    FontSize="20"
+                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
+                                <Button 
+                                Content="Обновить" 
+                                Command="{Binding UpdateProjectsWorkerCommand}" 
+                                Grid.Column="1" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                                <Button 
+                                Content="Удалить" 
+                                Command="{Binding RemoveProjectsWorkerCommand}" 
+                                Grid.Column="2" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl>
 
         <!--<TabControl Visibility="{Binding IsUser}">
             <TabItem>
@@ -353,4 +354,5 @@
             </TabItem>
         </TabControl>-->
     </Grid>
+    </Border>
 </Window>
