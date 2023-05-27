@@ -49,7 +49,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Content="Добавить" 
-                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Command="{Binding AddWorkerCommand}" 
                                     Grid.Column="0" 
                                     Margin="5" 
                                     FontSize="20"
@@ -100,7 +100,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Content="Добавить" 
-                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Command="{Binding AddUserCommand}" 
                                     Grid.Column="0" 
                                     Margin="5" 
                                     FontSize="20"
@@ -148,7 +148,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Content="Добавить" 
-                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Command="{Binding AddDepartmentCommand}" 
                                     Grid.Column="0" 
                                     Margin="5" 
                                     FontSize="20"
@@ -196,7 +196,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Content="Добавить" 
-                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Command="{Binding AddPositionCommand}" 
                                     Grid.Column="0" 
                                     Margin="5" 
                                     FontSize="20"
@@ -244,7 +244,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Button Content="Добавить" 
-                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Command="{Binding AddProjectsCommand}" 
                                     Grid.Column="0" 
                                     Margin="5" 
                                     FontSize="20"

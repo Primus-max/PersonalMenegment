@@ -10,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -41,7 +41,7 @@
             Command="{Binding ExecuteCommand}" 
             FontSize="20" 
             FontFamily="Cascadia Mono" 
-            Margin="200 10 200 10" 
+            Margin="200 10 200 15" 
             Grid.Row="2" 
             Grid.ColumnSpan="2"
             Style="{StaticResource MaterialDesignPaperLightButton}" />

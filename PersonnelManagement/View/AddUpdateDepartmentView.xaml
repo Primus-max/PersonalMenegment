@@ -6,27 +6,28 @@
         xmlns:local="clr-namespace:PersonnelManagement.View" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdateDepartmentViewModel}"
         mc:Ignorable="d"
         Title="Добавление/изменение отдела" Height="165" Width="500" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
+    <Border >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="55"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
 
-        <Label Content="Название" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono"/>
+            <Label Content="Название" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Height="32" Margin="0,22,0,25" Width="102"/>
 
-        <TextBox Text="{Binding Department.Title}" Grid.Column="1" Margin="5 25 5 25" FontSize="18" FontFamily="Cascadia Mono" />
+            <TextBox Text="{Binding Department.Title}" Grid.Column="1" Margin="5 25 5 25" FontSize="18" FontFamily="Cascadia Mono" />
 
-        <Button 
+            <Button 
             Content="{Binding Action}" 
             Command="{Binding ExcecuteCommand}" 
             FontSize="20" FontFamily="Cascadia Mono" 
-            Margin="190 10 190 10" 
-            Grid.Row="1" 
-            Grid.ColumnSpan="2"
-            Style="{StaticResource MaterialDesignPaperLightButton}" />
-    </Grid>
+            Margin="67,10,190,15" 
+            Grid.Row="1"
+            Style="{StaticResource MaterialDesignPaperLightButton}" Grid.Column="1" Height="Auto" />
+        </Grid>
+    </Border>
 </Window>

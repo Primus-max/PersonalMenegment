@@ -60,20 +60,23 @@ namespace PersonnelManagement.ViewModel
         public AddUpdateUserViewModel(DataModel data, Users user, string action)
         {
             _data = data;
-            if(user == null)
+
+            if (user == null)
             {
                 Users = new Users();
-                SelectWorker = Workers[0];
-                SelectRoles = Roles[0];
+                SelectWorker = Workers != null && Workers.Count > 0 ? Workers[0] : null;
+                SelectRoles = Roles != null && Roles.Count > 0 ? Roles[0] : null;
             }
             else
             {
                 Users = user;
                 SelectWorker = user.Worker;
-                SelectRoles = Roles[0];
+                SelectRoles = Roles != null && Roles.Count > 0 ? Roles[0] : null;
             }
+
             Action = action;
         }
+
 
         public override void Execute()
         {
