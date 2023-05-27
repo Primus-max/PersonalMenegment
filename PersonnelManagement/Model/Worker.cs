@@ -14,5 +14,6 @@ namespace PersonnelManagement.Model
 
         public Department Department { get; set; }
         public Position Position { get; set; }
+        public DateTime DateOfHire { get; set; } = DateTime.Now.Date;
     }
 }
