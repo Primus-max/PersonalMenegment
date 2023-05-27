@@ -162,7 +162,7 @@
                                 Style="{StaticResource MaterialDesignPaperLightButton}"/>
                             <Button 
                                 Content="Удалить" 
-                                Command="{Binding RemoveProjectsWorkerCommand}" 
+                                Command="{Binding RemoveDepartmentCommand}" 
                                 Grid.Column="2" 
                                 Margin="5" 
                                 FontSize="20"
