@@ -155,7 +155,7 @@
                                     Style="{StaticResource MaterialDesignPaperLightButton}" />
                             <Button 
                                 Content="Обновить" 
-                                Command="{Binding UpdateProjectsWorkerCommand}" 
+                                Command="{Binding UpdateDepartmentCommand}" 
                                 Grid.Column="1" 
                                 Margin="5" 
                                 FontSize="20"
