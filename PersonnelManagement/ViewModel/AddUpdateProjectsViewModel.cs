@@ -25,7 +25,7 @@ namespace PersonnelManagement.ViewModel
         public AddUpdateProjectsViewModel(DataModel data, Projects projects, string action)
         {
             _data = data;
-            if (Projects == null)
+            if (projects == null)
                 Projects = new Projects();
             else Projects = projects;
 
