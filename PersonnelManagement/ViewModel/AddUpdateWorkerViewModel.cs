@@ -61,11 +61,11 @@ namespace PersonnelManagement.ViewModel
         {
             _data = data;
 
-            if(worker == null)
+            if (worker == null)
             {
                 Worker = new Worker();
-                SelectDepartment = Departments[0];
-                SelectPosition = Positions[0];
+                SelectDepartment = Departments != null && Departments.Count > 0 ? Departments[0] : null;
+                SelectPosition = Positions != null && Positions.Count > 0 ? Positions[0] : null;
             }
             else
             {
@@ -76,6 +76,7 @@ namespace PersonnelManagement.ViewModel
 
             Action = action;
         }
+
 
         public override void Execute()
         {
