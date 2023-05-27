@@ -11,23 +11,30 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
 
-        <Label Content="Название" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono"/>
-
-        <TextBox Text="{Binding Projects.Title}" Grid.Column="1" Margin="5 25 5 25" FontSize="20" FontFamily="Cascadia Mono"/>
-
+        <StackPanel Grid.Row="0" 
+                    Orientation="Horizontal"
+                    Margin="20 0 0 0">
+            <Label Content="Название" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <TextBox Text="{Binding Projects.Title}" 
+                     MinWidth="310"
+                     Margin="10 0 0 0" 
+                     FontSize="18" 
+                     FontFamily="Cascadia Mono" 
+                     VerticalAlignment="Center"/>
+        </StackPanel>
         <Button 
             Content="{Binding Action}" 
             Command="{Binding ExecuteCommand}" 
             FontSize="20" 
             FontFamily="Cascadia Mono" 
-            Margin="190 10 190 10" 
-            Grid.Row="1" 
-            Grid.ColumnSpan="2"
+            Width="210"
+            Height="40"
+            Grid.Row="1"
             Style="{StaticResource MaterialDesignPaperLightButton}" />
     </Grid>
 </Window>
