@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelManagement.View" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdateWorkerViewModel}"
         mc:Ignorable="d"
-        Title="Добавление/изменение сотрудников" Height="250" Width="550" WindowStartupLocation="CenterScreen">
+        Title="Добавление/изменение сотрудников" 
+        Height="250" 
+        Width="650" 
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -13,41 +17,72 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3.5*"/>
-        </Grid.ColumnDefinitions>
 
-        <Label Content="Отдел" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono"/>
-        <Label Content="Должность" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="1"/>
-        <Label Content="ФИО" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="2"/>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="Должность" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono" 
+                   Grid.Row="1"/>
+            <ComboBox ItemsSource="{Binding Positions}" 
+                      SelectedValue="{Binding SelectPosition}" 
+                      MinWidth="450"
+                      Margin="39,0,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Cascadia Mono"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="Отдел" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <ComboBox ItemsSource="{Binding Departments}" 
+                      SelectedValue="{Binding SelectDepartment}" 
+                      MinWidth="450"
+                      Margin="85,0,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" 
+                                   FontSize="20" 
+                                   FontFamily="Cascadia Mono"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="ФИО" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <TextBox Text="{Binding Worker.FullName}" 
+                     FontSize="20" 
+                     FontFamily="Cascadia Mono" 
+                     MinWidth="450"
+                     Margin="109,0,0,0" 
+                     VerticalAlignment="Center"/>
+        </StackPanel>
         
-        <ComboBox ItemsSource="{Binding Departments}" SelectedValue="{Binding SelectDepartment}" Grid.Row="0" Grid.Column="1" Margin="5 10 5 10">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Cascadia Mono"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
-        <ComboBox ItemsSource="{Binding Positions}" SelectedValue="{Binding SelectPosition}" Grid.Row="1" Grid.Column="1" Margin="5 10 5 10">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Cascadia Mono"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
-        <TextBox Text="{Binding Worker.FullName}" Grid.Row="2" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 10 5 10"/>
-
         <Button 
             Content="{Binding Action}" 
             Command="{Binding ExecuteCommand}" 
             FontSize="20" 
             FontFamily="Cascadia Mono" 
-            Margin="200 5 200 5" 
-            Grid.Row="5" 
-            Grid.ColumnSpan="2"
+            Width="210"
+            Height="40" 
+            Grid.Row="5"             
             Style="{StaticResource MaterialDesignPaperLightButton}" />
     </Grid>
 </Window>

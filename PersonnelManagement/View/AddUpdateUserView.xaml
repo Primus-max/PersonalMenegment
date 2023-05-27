@@ -52,7 +52,9 @@
                       Margin="60 0 0 0">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Cascadia Mono"/>
+                        <TextBlock Text="{Binding Title}" 
+                                   FontSize="20" 
+                                   FontFamily="Cascadia Mono"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
