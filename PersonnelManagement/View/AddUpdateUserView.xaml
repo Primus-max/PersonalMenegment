@@ -5,51 +5,99 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelManagement.View" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdateUserViewModel}"
         mc:Ignorable="d"
-        Title="Добавление/изменение пользователей" Height="350" Width="650" WindowStartupLocation="CenterScreen">
+        Title="Добавление/изменение пользователей" 
+        Height="350" 
+        Width="650" 
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="57"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="4*"/>
-        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="Работник" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Center" 
+               FontSize="20" 
+               FontFamily="Cascadia Mono"/>
+            <ComboBox ItemsSource="{Binding Workers}" 
+                  SelectedValue="{Binding SelectWorker}" 
+                  MinWidth="450"
+                  Margin="15 0 0 0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding FullName}" FontSize="20" FontFamily="Cascadia Mono"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
 
-        <Label Content="Работник" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono"/>
-        <Label Content="Роль" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="1"/>
-        <Label Content="Логин" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="2"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontFamily="Cascadia Mono" Grid.Row="3"/>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="Роль" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <ComboBox ItemsSource="{Binding Roles}" 
+                      SelectedValue="{Binding SelectRoles}"  
+                      MinWidth="450"
+                      Margin="60 0 0 0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Cascadia Mono"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
 
-        <ComboBox ItemsSource="{Binding Workers}" SelectedValue="{Binding SelectWorker}" Grid.Row="0" Grid.Column="1" Margin="5 18 5 18">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding FullName}" FontSize="20" FontFamily="Cascadia Mono"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="Логин" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Center" 
+               FontSize="20" 
+               FontFamily="Cascadia Mono"/>
+            <TextBox Text="{Binding Users.Login}"
+                     FontSize="20" 
+                     FontFamily="Cascadia Mono" 
+                     MinWidth="400"
+                     Margin="48,0,0,0" 
+                     VerticalAlignment="Center"/>
+        </StackPanel>
 
-        <ComboBox ItemsSource="{Binding Roles}" SelectedValue="{Binding SelectRoles}" Grid.Row="1" Grid.Column="1" Margin="5 18 5 18">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Cascadia Mono"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
-        <TextBox Text="{Binding Users.Login}" Grid.Row="2" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 18 5 18"/>
-        <TextBox Text="{Binding Users.Password}" Grid.Row="3" Grid.Column="1" FontSize="20" FontFamily="Cascadia Mono" Margin="5 18 5 18"/>
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="Пароль" 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <TextBox Text="{Binding Users.Password}" 
+                     FontSize="20" 
+                     FontFamily="Cascadia Mono" 
+                     MinWidth="400"
+                     Margin="37,0,0,0" 
+                     VerticalAlignment="Center"/>
+        </StackPanel>
 
         <Button 
             Content="{Binding Action}" 
             Command="{Binding ExecuteCommand}" 
             FontSize="20" 
-            FontFamily="Cascadia 
-            Mono" Margin="200 5 200 5" 
-            Grid.Row="5" Grid.ColumnSpan="2"
+            FontFamily="Cascadia Mono"
+            Width="210"
+            Height="40" 
+            Grid.Row="4"
             Style="{StaticResource MaterialDesignPaperLightButton}" />
     </Grid>
 </Window>
