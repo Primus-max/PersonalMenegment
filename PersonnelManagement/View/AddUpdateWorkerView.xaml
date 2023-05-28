@@ -97,7 +97,8 @@
                         Margin="98,0,0,0" 
                         materialDesign:HintAssist.Hint="Выбор даты"
                         materialDesign:HintAssist.HelperText="Дата трудоустройства"
-                        Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+                        SelectedDate="{Binding SelectDateOfHire}"/>
         </StackPanel>
         
         <Button 

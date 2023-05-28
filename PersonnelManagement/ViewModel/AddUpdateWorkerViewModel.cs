@@ -14,6 +14,7 @@ namespace PersonnelManagement.ViewModel
         private Worker _worker;
         private Department _selectDepartment;
         private Position _selectPosition;
+        private DateTime _selectDateOfHire;
 
         public Worker Worker
         {
@@ -54,6 +55,16 @@ namespace PersonnelManagement.ViewModel
                 _selectPosition = value;
                 Worker.PositionID = value == null ? -1 : value.Id;
                 OnProperty("SelectPosition");
+            }
+        }
+
+        public DateTime SelectDateOfHire
+        {
+            get => _selectDateOfHire;
+            set
+            {
+                _selectDateOfHire = value;
+                OnProperty("SelectDateOfHire");
             }
         }
 

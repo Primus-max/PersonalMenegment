@@ -30,7 +30,7 @@ namespace PersonnelManagement.ViewModel
         private Projects _selectProjects;
         private ProjectsWorker _selectProjectsWorker;
         private Users _selectUsers;
-        private Worker _selectWorker;
+        private Worker _selectWorker;      
         #endregion
 
         #region public Collection
@@ -153,7 +153,7 @@ namespace PersonnelManagement.ViewModel
                 _selectWorker = value;
                 OnProperty("SelectWorkers");
             }
-        }
+        }       
         #endregion
 
         #region Visibility
