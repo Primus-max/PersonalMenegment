@@ -107,7 +107,6 @@
     <Compile Include="ViewModel\AddUpdateWorkerViewModel.cs" />
     <Compile Include="ViewModel\AutorizationViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\Converters\EmployeesCountConverter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\AddUpdateDepartmentView.xaml.cs">
       <DependentUpon>AddUpdateDepartmentView.xaml</DependentUpon>

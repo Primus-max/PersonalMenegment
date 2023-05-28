@@ -12,7 +12,6 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"     
         
-        xmlns:local="clr-namespace:PersonnelManagement.ViewModel.Converters" 
         xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" 
         d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"

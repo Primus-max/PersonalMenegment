@@ -24,16 +24,21 @@ namespace PersonnelManagement.Model.DB
         {
             List<Department> temp;
             DataTable _dataTemp = new DataTable();
-            _command.InitialTable(out _dataTemp, "Select * from Department");
+            _command.InitialTable(out _dataTemp, "SELECT d.Id, d.Title, COUNT(w.Id) AS EmployeesCount " +
+                                                 "FROM Department d " +
+                                                 "LEFT JOIN Worker w ON d.Id = w.DepartmentId " +
+                                                 "GROUP BY d.Id, d.Title");
             temp = (from DataRow dr in _dataTemp.Rows
                     select new Department()
                     {
                         Id = int.Parse(dr["Id"].ToString()),
                         Title = dr["Title"].ToString(),
+                        EmployeesCount = int.Parse(dr["EmployeesCount"].ToString())
                     }).ToList();
 
-            return  new ObservableCollection<Department>(temp);
+            return new ObservableCollection<Department>(temp);
         }
+
         public ObservableCollection<Position> GetPosition()
         {
             List<Position> temp;
