@@ -40,7 +40,7 @@
                                 <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
                                 <DataGridTextColumn Header="Отдел" Binding="{Binding Department.Title}" Width="*"/>
                                 <DataGridTextColumn Header="Должность" Binding="{Binding Position.Title}" Width="*"/>
-                                <DataGridTextColumn Header="Принят" Binding="{Binding Position.Title}" Width="*"/>
+                                <DataGridTextColumn Header="Принят" Binding="{Binding DateOfHire}" Width="*"/>
                                 </DataGrid.Columns>
                         </DataGrid>
 
