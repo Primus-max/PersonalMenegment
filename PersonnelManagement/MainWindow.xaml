@@ -140,6 +140,7 @@
                         <DataGrid ItemsSource="{Binding Departments}" SelectedValue="{Binding SelectDepartment}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                                <DataGridTextColumn Header="Сотрудников" Binding="{Binding Title}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         

@@ -216,6 +216,8 @@ namespace PersonnelManagement.ViewModel
                 InputUsers = users;
                 UserProject = new ObservableCollection<ProjectsWorker>(_data.ProjectsWorkers.Where(x => x.WorkerID == users.Worker.Id).ToList());
             }
+
+            var dep = Workers;
         }
 
         #region Department
