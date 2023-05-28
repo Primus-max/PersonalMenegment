@@ -9,5 +9,6 @@ namespace PersonnelManagement.Model
     public class Department : BaseEntity
     {
         public string Title { get; set; }
+        public int EmployeesCount { get; set; }
     }
 }
