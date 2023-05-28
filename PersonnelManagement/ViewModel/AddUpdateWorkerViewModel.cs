@@ -14,7 +14,7 @@ namespace PersonnelManagement.ViewModel
         private Worker _worker;
         private Department _selectDepartment;
         private Position _selectPosition;
-        private DateTime _selectDateOfHire;
+        private DateTime _selectDateOfHire = DateTime.Now;
 
         public Worker Worker
         {
@@ -83,6 +83,7 @@ namespace PersonnelManagement.ViewModel
                 Worker = worker;
                 SelectDepartment = worker.Department;
                 SelectPosition = worker.Position;
+                SelectDateOfHire = worker.DateOfHire;
             }
 
             Action = action;
@@ -102,10 +103,12 @@ namespace PersonnelManagement.ViewModel
                 case "Добавить":
                     {
                         Worker.Id = _data.Workers.Count() == 0 ? 2 : _data.Workers.Last().Id + 1;
+                        Worker.DateOfHire = SelectDateOfHire;
                         _data.Add(Worker);
                     }; break;
                 case "Обновить":
                     {
+                        Worker.DateOfHire = SelectDateOfHire;
                         _data.Update(Worker);
                     }; break;
             }

@@ -119,7 +119,8 @@ namespace PersonnelManagement.Model.DB
                         Id = int.Parse(dr["Id"].ToString()),
                         FullName = dr["FullName"].ToString(),
                         DepartmentID = int.Parse(dr["DepartmentID"].ToString()),
-                        PositionID = int.Parse(dr["PositionID"].ToString())
+                        PositionID = int.Parse(dr["PositionID"].ToString()),
+                        DateOfHire = DateTime.Parse(dr["DateOfHire"].ToString())
                     }).ToList();
 
             return new ObservableCollection<Worker>(temp);
@@ -145,32 +146,40 @@ namespace PersonnelManagement.Model.DB
         {
             List<PropertyInfo> props = entity.GetType().GetProperties().ToList();
 
-            string command = $"Insert into {entity.GetType().Name} (";
+            string tableName = entity.GetType().Name;
+            List<string> columnNames = new List<string>();
+            List<string> values = new List<string>();
 
             for (int i = 0; i < props.Count(); i++)
             {
                 if (!props[i].PropertyType.IsSubclassOf(typeof(BaseEntity)) && props[i].PropertyType != typeof(DateTime))
-                    command += props[i].Name + ", ";
-            }
-
-            command = command.Remove(command.Length - 2, 2);
-            command += ") values (";
-
-            for (int i = 0; i < props.Count(); i++)
-            {
-                if (!props[i].PropertyType.IsSubclassOf(typeof(BaseEntity)) && props[i].PropertyType != typeof(DateTime))
+                {
+                    columnNames.Add(props[i].Name);
                     if (props[i].GetValue(entity) == null)
                     {
-                        command += "'null', ";
+                        values.Add("NULL");
                     }
-                    else 
-                        command += "N'" + props[i].GetValue(entity) + "', ";
+                    else
+                    {
+                        values.Add($"N'{props[i].GetValue(entity)}'");
+                    }
+                }
+                else if (props[i].PropertyType == typeof(DateTime))
+                {
+                    columnNames.Add(props[i].Name);
+                    DateTime dateTimeValue = (DateTime)props[i].GetValue(entity);
+                    string formattedDateTime = dateTimeValue.ToString("yyyy-MM-dd HH:mm:ss");
+                    values.Add($"N'{formattedDateTime}'");
+                }
             }
 
-            command = command.Remove(command.Length - 2, 2);
-            command += ");";
+            string columns = string.Join(", ", columnNames);
+            string columnValues = string.Join(", ", values);
+
+            string command = $"INSERT INTO {tableName} ({columns}) VALUES ({columnValues});";
             return command;
         }
+
 
         private string Remove(BaseEntity entity)
         {
@@ -185,20 +194,34 @@ namespace PersonnelManagement.Model.DB
 
             foreach (PropertyInfo p in props)
             {
-                if (!p.PropertyType.IsSubclassOf(typeof(BaseEntity)) && p.PropertyType != typeof(DateTime))
-                    if (p.GetValue(entity) == null)
+                if (!p.PropertyType.IsSubclassOf(typeof(BaseEntity)))
+                {
+                    if (p.PropertyType == typeof(DateTime))
                     {
-                        command += $"{p.Name} = null, ";
+                        DateTime dateTimeValue = (DateTime)p.GetValue(entity);
+                        string formattedDateTime = dateTimeValue.ToString("yyyy-MM-dd HH:mm:ss"); // Форматируем дату и время в строку с подходящим форматом
+                        command += $"{p.Name} = N'{formattedDateTime}', ";
                     }
                     else
-                        command += $"{p.Name} = N'" + p.GetValue(entity) + "', ";
+                    {
+                        if (p.GetValue(entity) == null)
+                        {
+                            command += $"{p.Name} = null, ";
+                        }
+                        else
+                        {
+                            command += $"{p.Name} = N'{p.GetValue(entity)}', ";
+                        }
+                    }
+                }
             }
-            command = command.Remove(command.Length - 2, 2);
 
+            command = command.Remove(command.Length - 2, 2);
             command += $" where Id = {props[props.Count() - 1].GetValue(entity)}";
 
             return command;
         }
+
 
         #endregion
     }

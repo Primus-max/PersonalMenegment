@@ -98,7 +98,10 @@
                         materialDesign:HintAssist.Hint="Выбор даты"
                         materialDesign:HintAssist.HelperText="Дата трудоустройства"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
-                        SelectedDate="{Binding SelectDateOfHire}"/>
+                        SelectedDate="{Binding SelectDateOfHire}"  
+                        FirstDayOfWeek="Monday"
+                        Language="ru-RU"
+                        SelectedDateFormat="Short"/>
         </StackPanel>
         
         <Button 

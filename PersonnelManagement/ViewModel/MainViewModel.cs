@@ -207,7 +207,7 @@ namespace PersonnelManagement.ViewModel
                 Projects = _data.Projects;
                 ProjectsWorkers = _data.ProjectsWorkers;
                 Users = _data.Users;
-                Workers = _data.Workers;
+                Workers = _data.Workers;                
             }
             else
             {
