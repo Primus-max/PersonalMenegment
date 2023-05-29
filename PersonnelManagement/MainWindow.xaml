@@ -241,6 +241,9 @@
                             <DataGrid ItemsSource="{Binding Projects}" SelectedValue="{Binding SelectProjects}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                                    <DataGridTextColumn Header="Начало" Binding="{Binding Title}" Width="*"/>
+                                    <DataGridTextColumn Header="Конец" Binding="{Binding Title}" Width="*"/>
+                                    <DataGridTextColumn Header="Бюджет" Binding="{Binding Title}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
 
@@ -325,42 +328,6 @@
                     </TabItem.Content>
                 </TabItem>
             </TabControl>
-
-        <!--<TabControl Visibility="{Binding IsUser}">
-            <TabItem>
-                <TabItem.Header>
-                    <TextBlock Text="Личный кабинет" FontSize="20"/>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Content="ФИО" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
-                        <Label Content="Отдел" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="1"/>
-                        <Label Content="Должность" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="2"/>
-                        <TextBlock Text="{Binding InputUsers.Worker.FullName}" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="20"/>
-                        <TextBlock Text="{Binding InputUsers.Worker.Department.Title}" Grid.Row="1" Grid.Column="1" Margin="5" FontSize="20"/>
-                        <TextBlock Text="{Binding InputUsers.Worker.Position.Title}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="20"/>
-
-                        <DataGrid Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding UserProject}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Участие в проекте" Binding="{Binding Projects.Title}" Width="*"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
-        </TabControl>-->
     </Grid>
     </Border>
 </Window>
