@@ -342,6 +342,11 @@ namespace PersonnelManagement.ViewModel
             Projects = _data.Projects;
             ProjectsWorkers = _data.ProjectsWorkers;
         }
+        private void StopProject()
+        {
+            // Сюда надо добавить метод добавления текущей даты 
+            _data.Projects
+        }
         #endregion
 
         #region ProjectsWorker
@@ -491,7 +496,7 @@ namespace PersonnelManagement.ViewModel
             Users = _data.Users;
         }
         #endregion
-
+      
         public RelayCommand AddDepartmentCommand => new RelayCommand(AddDepartment);
         public RelayCommand UpdateDepartmentCommand => new RelayCommand(UpdateDepartment);
         public RelayCommand RemoveDepartmentCommand => new RelayCommand(RemoveDepartment);
@@ -503,6 +508,7 @@ namespace PersonnelManagement.ViewModel
         public RelayCommand AddProjectsCommand => new RelayCommand(AddProjects);
         public RelayCommand UpdateProjectsCommand => new RelayCommand(UpdateProjects);
         public RelayCommand RemoveProjectsCommand => new RelayCommand(RemoveProjects);
+        public RelayCommand StopProjectCommand => new RelayCommand(StopProject);
 
         public RelayCommand AddProjectsWorkerCommand => new RelayCommand(AddProjectsWorker);
         public RelayCommand UpdateProjectsWorkerCommand => new RelayCommand(UpdateProjectsWorker);
@@ -514,6 +520,6 @@ namespace PersonnelManagement.ViewModel
 
         public RelayCommand AddWorkerCommand => new RelayCommand(AddWorker);
         public RelayCommand UpdateWorkerCommand => new RelayCommand(UpdateWorker);
-        public RelayCommand RemoveWorkerCommand => new RelayCommand(RemoveWorker);
+        public RelayCommand RemoveWorkerCommand => new RelayCommand(RemoveWorker);       
     }
 }

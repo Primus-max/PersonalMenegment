@@ -259,23 +259,15 @@
                                     <DataGridTemplateColumn Header="Статус" Width="Auto">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <!--<ProgressBar Value="{Binding Status}"                                                                 
-                                                                 Minimum="0" 
-                                                                 Maximum="100" 
-                                                                 Width="50" 
-                                                                 Height="10" 
-                                                                 Style="{StaticResource GreenProgressBarStyle}"/>
-                                                    <Button Content="Завершить"
-                                                            Margin="5 0 0 0"
-                                                            Width="50"/>-->
+                                                <StackPanel Orientation="Horizontal">                                                 
                                                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                                                             ToolTip="Нажми чтобы закончить проект"
                                                             materialDesign:ButtonProgressAssist.IndicatorForeground="DarkGreen"                                                            
                                                             materialDesign:ButtonProgressAssist.Value="60"
                                                             Content="{materialDesign:PackIcon DotsHorizontal}"
-                                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
+                                                            Command="{Binding DataContext.StopProjectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGrid}}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
