@@ -58,7 +58,7 @@
                         materialDesign:HintAssist.Hint="Выбор даты"
                         materialDesign:HintAssist.HelperText="Дата начала проекта"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
-                        SelectedDate="{Binding SelectDateOfHire}"  
+                        SelectedDate="{Binding SelectedStartDate}"  
                         FirstDayOfWeek="Monday"
                         Language="ru-RU"
                         SelectedDateFormat="Short"/>
@@ -76,7 +76,7 @@
                         materialDesign:HintAssist.Hint="Выбор даты"
                         materialDesign:HintAssist.HelperText="Дата завершения проекта"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
-                        SelectedDate="{Binding SelectDateOfHire}"  
+                        SelectedDate="{Binding SelectedFinishDate}"  
                         FirstDayOfWeek="Monday"
                         Language="ru-RU"
                         SelectedDateFormat="Short"/>

@@ -64,6 +64,9 @@ namespace PersonnelManagement.Model.DB
                     {
                         Id = int.Parse(dr["Id"].ToString()),
                         Title = dr["Title"].ToString(),
+                        StartProject = DateTime.Parse(dr["StartProject"].ToString()), 
+                        FinishProject = DateTime.Parse(dr["FinishProject"].ToString()), 
+                        ProjectBudget = decimal.Parse(dr["ProjectBudget"].ToString()) 
                     }).ToList();
 
             return new ObservableCollection<Projects>(temp);
@@ -205,7 +208,7 @@ namespace PersonnelManagement.Model.DB
                     if (p.PropertyType == typeof(DateTime))
                     {
                         DateTime dateTimeValue = (DateTime)p.GetValue(entity);
-                        string formattedDateTime = dateTimeValue.ToString("yyyy-MM-dd HH:mm:ss"); // Форматируем дату и время в строку с подходящим форматом
+                        string formattedDateTime = dateTimeValue.ToString("yyyy-MM-dd"); // Форматируем дату и время в строку с подходящим форматом
                         command += $"{p.Name} = N'{formattedDateTime}', ";
                     }
                     else
