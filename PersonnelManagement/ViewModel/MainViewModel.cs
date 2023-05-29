@@ -344,8 +344,25 @@ namespace PersonnelManagement.ViewModel
         }
         private void StopProject()
         {
-            // Сюда надо добавить метод добавления текущей даты 
-            _data.Projects
+            // Проверить, что выбранный проект не является null
+            if (SelectProjects != null)
+            {
+                // Установить поле FinishedDate текущей датой и временем
+                SelectProjects.FinishedDate = DateTime.Now;
+
+                // Найти проект в базе данных по идентификатору
+                var projectInDatabase = _data.Projects.FirstOrDefault(p => p.Id == SelectProjects.Id);
+
+                // Проверить, что проект найден
+                if (projectInDatabase != null)
+                {
+                    // Обновить поле FinishedDate в базе данных
+                    projectInDatabase.FinishedDate = SelectProjects.FinishedDate;
+                    _data.Update(projectInDatabase);
+                    // Выполнить сохранение изменений в базе данных
+                    //_data.SaveChanges();
+                }
+            }
         }
         #endregion
 
