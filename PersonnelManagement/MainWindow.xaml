@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
+        xmlns:local="clr-namespace:PersonnelManagement.ViewModel.Converters"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -20,6 +21,9 @@
         Width="800" 
         FontFamily="Cascadia Mono" 
         FontSize="16">
+    <Window.Resources>
+        <local:SalaryConverter x:Key="SalaryConverter" />
+    </Window.Resources>
     <Border Padding="5">
     <Grid>
         <TabControl Visibility="{Binding IsAdmin}" TabStripPlacement="Left" >
@@ -187,9 +191,9 @@
 
                         <DataGrid ItemsSource="{Binding Positions}" SelectedValue="{Binding SelectPosition}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
-                                <DataGridTextColumn Header="З/П" Binding="{Binding Salary}" Width="*"/>
-                                </DataGrid.Columns>
+                                <DataGridTextColumn Header="Долджность" Binding="{Binding Title}" Width="*"/>
+                                    <DataGridTextColumn Header="З/П" Binding="{Binding Salary, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*" />
+                             </DataGrid.Columns>
                         </DataGrid>
 
                         <Grid Grid.Row="1">
