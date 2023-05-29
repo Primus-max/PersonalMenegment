@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:PersonnelManagement.View" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdatePositionViewModel}"
         mc:Ignorable="d"
         Title="Добавление/изменение должности" 
-        Height="165" 
+        Height="210" 
         Width="500" 
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
@@ -30,6 +31,23 @@
                      FontFamily="Cascadia Mono" 
                      VerticalAlignment="Center"/>
         </StackPanel>
+
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal"
+                    Margin="20 0 0 0">
+        <Label Content="Зарплата" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+        <TextBox Text="{Binding Position.Salary}" 
+                     MinWidth="310"
+                     Margin="10 0 0 0" 
+                     FontSize="18" 
+                     FontFamily="Cascadia Mono" 
+                     VerticalAlignment="Center"/>
+        </StackPanel>
+
         <Button 
             Content="{Binding Action}" 
             Command="{Binding ExecuteCommand}" 
@@ -37,7 +55,7 @@
             FontFamily="Cascadia Mono" 
             Width="210"
             Height="40"
-            Grid.Row="1"
+            Grid.Row="2"
             Style="{StaticResource MaterialDesignPaperLightButton}" />
     </Grid>
 </Window>

@@ -49,6 +49,7 @@ namespace PersonnelManagement.Model.DB
                     {
                         Id = int.Parse(dr["Id"].ToString()),
                         Title = dr["Title"].ToString(),
+                        Salary = decimal.Parse(dr["Salary"].ToString())
                     }).ToList();
 
             return new ObservableCollection<Position>(temp);
