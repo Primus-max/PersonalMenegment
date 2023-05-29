@@ -8,6 +8,7 @@ namespace PersonnelManagement.Model
 {
     public class Position : BaseEntity
     {
-        public string Title { get; set; }        
+        public string Title { get; set; }   
+        public decimal Salary { get; set; }
     }
 }

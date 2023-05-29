@@ -139,7 +139,7 @@
                         <DataGrid ItemsSource="{Binding Departments}" SelectedValue="{Binding SelectDepartment}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
-                                <DataGridTextColumn Header="Сотрудников" Binding="{Binding EmployeesCount}" Width="*"/>
+                                <DataGridTextColumn Header="Сотрудников" Binding="{Binding EmployeesCount, Mode=TwoWay}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         
@@ -188,7 +188,8 @@
                         <DataGrid ItemsSource="{Binding Positions}" SelectedValue="{Binding SelectPosition}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
-                            </DataGrid.Columns>
+                                <DataGridTextColumn Header="З/П" Binding="{Binding Title}" Width="*"/>
+                                </DataGrid.Columns>
                         </DataGrid>
 
                         <Grid Grid.Row="1">

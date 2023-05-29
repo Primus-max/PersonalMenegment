@@ -173,7 +173,7 @@ namespace PersonnelManagement.Model.DB
                 {
                     columnNames.Add(props[i].Name);
                     DateTime dateTimeValue = (DateTime)props[i].GetValue(entity);
-                    string formattedDateTime = dateTimeValue.ToString("yyyy-MM-dd HH:mm:ss");
+                    string formattedDateTime = dateTimeValue.ToString("yyyy-MM-dd");
                     values.Add($"N'{formattedDateTime}'");
                 }
             }
