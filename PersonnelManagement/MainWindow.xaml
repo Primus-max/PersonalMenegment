@@ -241,9 +241,9 @@
                             <DataGrid ItemsSource="{Binding Projects}" SelectedValue="{Binding SelectProjects}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
-                                    <DataGridTextColumn Header="Начало" Binding="{Binding Title}" Width="*"/>
-                                    <DataGridTextColumn Header="Конец" Binding="{Binding Title}" Width="*"/>
-                                    <DataGridTextColumn Header="Бюджет" Binding="{Binding Title}" Width="*"/>
+                                    <DataGridTextColumn Header="Начало" Binding="{Binding  StartProject}" Width="*"/>
+                                    <DataGridTextColumn Header="Конец" Binding="{Binding FinishProject}" Width="*"/>
+                                    <DataGridTextColumn Header="Бюджет" Binding="{Binding ProjectBudget}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
 
