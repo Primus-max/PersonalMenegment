@@ -66,7 +66,8 @@ namespace PersonnelManagement.Model.DB
                         Title = dr["Title"].ToString(),
                         StartProject = DateTime.Parse(dr["StartProject"].ToString()), 
                         FinishProject = DateTime.Parse(dr["FinishProject"].ToString()), 
-                        ProjectBudget = decimal.Parse(dr["ProjectBudget"].ToString()) 
+                        ProjectBudget = decimal.Parse(dr["ProjectBudget"].ToString()),
+                        ProjectManager = dr["ProjectManager"].ToString()
                     }).ToList();
 
             return new ObservableCollection<Projects>(temp);

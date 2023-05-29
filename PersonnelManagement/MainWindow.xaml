@@ -252,7 +252,7 @@
                                 </DataGrid.Resources>
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="Auto"/>
-                                    <DataGridTextColumn Header="Ответственный" Binding="{Binding Title}" Width="*"/>
+                                    <DataGridTextColumn Header="Ответственный" Binding="{Binding ProjectManager}" Width="*"/>
                                     <DataGridTextColumn Header="Начало" Binding="{Binding  StartProject, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
                                     <DataGridTextColumn Header="Конец" Binding="{Binding FinishProject, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
                                     <DataGridTextColumn Header="Бюджет" Binding="{Binding ProjectBudget, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*"/>
