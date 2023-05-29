@@ -263,8 +263,8 @@
                                                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                                                             ToolTip="Нажми чтобы закончить проект"
-                                                            materialDesign:ButtonProgressAssist.IndicatorForeground="DarkGreen"                                                            
-                                                            materialDesign:ButtonProgressAssist.Value="60"
+                                                            materialDesign:ButtonProgressAssist.IndicatorForeground="DarkGreen"                                                              
+                                                            materialDesign:ButtonProgressAssist.Value="{Binding ProgressBarValue}"
                                                             Content="{materialDesign:PackIcon DotsHorizontal}"
                                                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
                                                             Command="{Binding DataContext.StopProjectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGrid}}"/>
