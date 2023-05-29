@@ -18,11 +18,12 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         
         Title="Добавление/изменение проектов" 
-        Height="350" 
+        Height="450" 
         Width="500" 
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -45,7 +46,26 @@
                      FontFamily="Cascadia Mono" 
                      VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Grid.Row="1"
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal"
+                    Margin="20 0 0 0">
+            <Label Content="Отв-ный" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <ComboBox ItemsSource="{Binding Workers}" 
+                  SelectedValue="{Binding SelectWorker}"  
+                  MinWidth="310"
+                  Margin="33,0,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding FullName}" FontSize="20" FontFamily="Cascadia Mono"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     Margin="20 0 0 0">
             <Label Content="Начало" 
@@ -63,7 +83,7 @@
                         Language="ru-RU"
                         SelectedDateFormat="Short"/>
         </StackPanel>
-        <StackPanel Grid.Row="2"
+        <StackPanel Grid.Row="3"
                     Orientation="Horizontal"
                     Margin="20 0 0 0">
             <Label Content="Конец" 
@@ -81,7 +101,7 @@
                         Language="ru-RU"
                         SelectedDateFormat="Short"/>
         </StackPanel>
-        <StackPanel Grid.Row="3" 
+        <StackPanel Grid.Row="4" 
                     Orientation="Horizontal"
                     Margin="20 0 0 0">
             <Label Content="Бюджет" 
@@ -103,7 +123,7 @@
             FontFamily="Cascadia Mono" 
             Width="210"
             Height="40"
-            Grid.Row="4"
+            Grid.Row="5"
             Style="{StaticResource MaterialDesignPaperLightButton}" />
     </Grid>
 </Window>

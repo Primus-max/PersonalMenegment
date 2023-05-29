@@ -12,5 +12,7 @@ namespace PersonnelManagement.Model
         public DateTime StartProject { get; set; }
         public DateTime FinishProject { get; set; }
         public decimal ProjectBudget { get; set; }
+        public string ProjectManager { get; set; }
+        public DateTime FinishedDate { get; set; }
     }
 }

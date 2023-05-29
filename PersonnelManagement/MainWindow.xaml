@@ -17,12 +17,13 @@
         d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
         Title="Менеджер по персоналу" 
-        Height="450" 
-        Width="800" 
+        Height="500" 
+        Width="900" 
         FontFamily="Cascadia Mono" 
-        FontSize="16">
+        FontSize="16" 
+        WindowState="Maximized">
     <Window.Resources>
-        <local:SalaryConverter x:Key="SalaryConverter" />
+        <local:SalaryConverter x:Key="SalaryConverter" />        
     </Window.Resources>
     <Border Padding="5">
     <Grid>
@@ -41,9 +42,9 @@
                         <DataGrid ItemsSource="{Binding Workers}" SelectedValue="{Binding SelectWorkers}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
-                                <DataGridTextColumn Header="Отдел" Binding="{Binding Department.Title}" Width="*"/>
-                                <DataGridTextColumn Header="Должность" Binding="{Binding Position.Title}" Width="*"/>
-                                <DataGridTextColumn Header="Принят" Binding="{Binding DateOfHire, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
+                                    <DataGridTextColumn Header="Должность" Binding="{Binding Position.Title}" Width="*"/>
+                                    <DataGridTextColumn Header="Отдел" Binding="{Binding Department.Title}" Width="*"/>                                
+                                <DataGridTextColumn Header="Принят/а" Binding="{Binding DateOfHire, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
 
@@ -142,7 +143,7 @@
 
                         <DataGrid ItemsSource="{Binding Departments}" SelectedValue="{Binding SelectDepartment}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                                <DataGridTextColumn Header="Отдел" Binding="{Binding Title}" Width="*"/>
                                 <DataGridTextColumn Header="Сотрудников" Binding="{Binding EmployeesCount, Mode=TwoWay}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
@@ -238,12 +239,47 @@
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
 
-                            <DataGrid ItemsSource="{Binding Projects}" SelectedValue="{Binding SelectProjects}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                            <DataGrid ItemsSource="{Binding Projects}"
+                                      SelectedValue="{Binding SelectProjects}" 
+                                      AutoGenerateColumns="False" 
+                                      CanUserAddRows="False" 
+                                      IsReadOnly="True" 
+                                      Margin="5">
+                                <DataGrid.Resources>
+                                    <Style x:Key="GreenProgressBarStyle" TargetType="ProgressBar">
+                                        <Setter Property="Foreground" Value="Green"/>
+                                    </Style>
+                                </DataGrid.Resources>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                                    <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="Auto"/>
+                                    <DataGridTextColumn Header="Ответственный" Binding="{Binding Title}" Width="*"/>
                                     <DataGridTextColumn Header="Начало" Binding="{Binding  StartProject, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
                                     <DataGridTextColumn Header="Конец" Binding="{Binding FinishProject, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
                                     <DataGridTextColumn Header="Бюджет" Binding="{Binding ProjectBudget, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*"/>
+                                    <DataGridTemplateColumn Header="Статус" Width="Auto">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <!--<ProgressBar Value="{Binding Status}"                                                                 
+                                                                 Minimum="0" 
+                                                                 Maximum="100" 
+                                                                 Width="50" 
+                                                                 Height="10" 
+                                                                 Style="{StaticResource GreenProgressBarStyle}"/>
+                                                    <Button Content="Завершить"
+                                                            Margin="5 0 0 0"
+                                                            Width="50"/>-->
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                                            ToolTip="Нажми чтобы закончить проект"
+                                                            materialDesign:ButtonProgressAssist.IndicatorForeground="DarkGreen"                                                            
+                                                            materialDesign:ButtonProgressAssist.Value="60"
+                                                            Content="{materialDesign:PackIcon DotsHorizontal}"
+                                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 

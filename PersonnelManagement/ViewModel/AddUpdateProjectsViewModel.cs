@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using PersonnelManagement.Model;
+using System.Collections.ObjectModel;
+
 
 namespace PersonnelManagement.ViewModel
 {
@@ -43,6 +45,23 @@ namespace PersonnelManagement.ViewModel
             }
         }
 
+        private Worker _selectWorker;
+        public Worker SelectWorker
+        {
+            get => _selectWorker;
+            set
+            {
+                _selectWorker = value;
+                //ProjectsWorker.WorkerID = value == null ? -1 : value.Id;
+                OnProperty("SelectWorker");
+            }
+        }
+
+        public ObservableCollection<Worker> Workers
+        {
+            get => _data.Workers;
+        }
+
         public AddUpdateProjectsViewModel(DataModel data, Projects projects, string action)
         {
             _data = data;
@@ -68,12 +87,14 @@ namespace PersonnelManagement.ViewModel
                         Projects.Id = _data.Projects.Count() == 0 ? 2 : _data.Projects.Last().Id + 1;
                         Projects.StartProject = SelectedStartDate;
                         Projects.FinishProject = SelectedFinishDate;
+                        Projects.ProjectManager = SelectWorker.FullName;
                         _data.Add(Projects);
                     }; break;
                 case "Обновить":
                     {
                         Projects.StartProject = SelectedStartDate;
                         Projects.FinishProject = SelectedFinishDate;
+                        Projects.ProjectManager = SelectWorker.FullName;
                         _data.Update(Projects);
                     }; break;
             }
