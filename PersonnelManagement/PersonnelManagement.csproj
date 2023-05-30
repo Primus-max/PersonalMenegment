@@ -99,7 +99,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\ProjectStatusHelper.cs" />
     <Compile Include="Helpers\WorkerPerformanceCalculator.cs" />
     <Compile Include="Model\WorkerStatistic.cs" />
     <Compile Include="ViewModel\AddUpdateDepartmentViewModel.cs" />

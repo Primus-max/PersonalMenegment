@@ -1,10 +1,7 @@
-﻿using System;
+﻿using PersonnelManagement.Model;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Collections.ObjectModel;
-using System.Linq;
-using PersonnelManagement.Model;
-using System.Collections.Generic;
 
 
 

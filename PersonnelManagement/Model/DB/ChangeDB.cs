@@ -1,13 +1,9 @@
-﻿using PersonnelManagement.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
 
 namespace PersonnelManagement.Model.DB
 {
@@ -20,6 +16,7 @@ namespace PersonnelManagement.Model.DB
         }
 
         #region Get
+        // Метод для получения списка департаментов из базы данных
         public ObservableCollection<Department> GetDepartment()
         {
             List<Department> temp;
@@ -39,6 +36,7 @@ namespace PersonnelManagement.Model.DB
             return new ObservableCollection<Department>(temp);
         }
 
+        // Метод для получения списка должностей из базы данных
         public ObservableCollection<Position> GetPosition()
         {
             List<Position> temp;
@@ -54,6 +52,8 @@ namespace PersonnelManagement.Model.DB
 
             return new ObservableCollection<Position>(temp);
         }
+
+        // Метод для получения списка проектов из базы данных
         public ObservableCollection<Projects> GetProjects()
         {
             List<Projects> temp;
@@ -64,8 +64,8 @@ namespace PersonnelManagement.Model.DB
                     {
                         Id = int.Parse(dr["Id"].ToString()),
                         Title = dr["Title"].ToString(),
-                        StartProject = DateTime.Parse(dr["StartProject"].ToString()), 
-                        FinishProject = DateTime.Parse(dr["FinishProject"].ToString()), 
+                        StartProject = DateTime.Parse(dr["StartProject"].ToString()),
+                        FinishProject = DateTime.Parse(dr["FinishProject"].ToString()),
                         ProjectBudget = decimal.Parse(dr["ProjectBudget"].ToString()),
                         ProjectManager = dr["ProjectManager"].ToString(),
                         FinishedDate = DateTime.Parse(dr["FinishedDate"].ToString())
@@ -73,6 +73,8 @@ namespace PersonnelManagement.Model.DB
 
             return new ObservableCollection<Projects>(temp);
         }
+
+        // Метод для получения списка работников проектов из базы данных
         public ObservableCollection<ProjectsWorker> GetProjectsWorker()
         {
             List<ProjectsWorker> temp;
@@ -88,6 +90,8 @@ namespace PersonnelManagement.Model.DB
 
             return new ObservableCollection<ProjectsWorker>(temp);
         }
+
+        // Метод для получения списка ролей из базы данных
         public ObservableCollection<Roles> GetRoles()
         {
             List<Roles> temp;
@@ -102,6 +106,8 @@ namespace PersonnelManagement.Model.DB
 
             return new ObservableCollection<Roles>(temp);
         }
+
+        // Метод для получения списка пользователей из базы данных
         public ObservableCollection<Users> GetUsers()
         {
             List<Users> temp;
@@ -110,7 +116,7 @@ namespace PersonnelManagement.Model.DB
             temp = (from DataRow dr in _dataTemp.Rows
                     select new Users()
                     {
-                        Id = int.Parse(dr["Id"].ToString()),              
+                        Id = int.Parse(dr["Id"].ToString()),
                         WorkerID = int.Parse(dr["WorkerID"].ToString()),
                         RoleID = int.Parse(dr["RoleID"].ToString()),
                         Login = dr["Login"].ToString(),
@@ -119,6 +125,8 @@ namespace PersonnelManagement.Model.DB
 
             return new ObservableCollection<Users>(temp);
         }
+
+        // Метод для получения списка работников из базы данных
         public ObservableCollection<Worker> GetWorker()
         {
             List<Worker> temp;
@@ -138,14 +146,19 @@ namespace PersonnelManagement.Model.DB
         }
         #endregion
 
+        // Метод для добавления записи в базу данных
         public void AddAll(BaseEntity baseEntity)
         {
             _command.Execute(Add(baseEntity));
         }
+
+        // Метод для обновления записи в базе данных
         public void UpdateAll(BaseEntity baseEntity)
         {
             _command.Execute(Update(baseEntity));
         }
+
+        // Метод для удаления записи из базы данных
         public void RemoveAll(BaseEntity baseEntity)
         {
             _command.Execute(Remove(baseEntity));
@@ -153,6 +166,7 @@ namespace PersonnelManagement.Model.DB
 
         #region Converter class to sql query
 
+        // Приватный метод для преобразования объекта в строку SQL-запроса для добавления записи
         private string Add(BaseEntity entity)
         {
             List<PropertyInfo> props = entity.GetType().GetProperties().ToList();
@@ -191,13 +205,14 @@ namespace PersonnelManagement.Model.DB
             return command;
         }
 
-
+        // Приватный метод для преобразования объекта в строку SQL-запроса для удаления записи
         private string Remove(BaseEntity entity)
         {
             PropertyInfo[] props = entity.GetType().GetProperties();
-            return $"Delete from {entity.GetType().Name} where Id = {props[props.Count() - 1].GetValue(entity)}";           
+            return $"Delete from {entity.GetType().Name} where Id = {props[props.Count() - 1].GetValue(entity)}";
         }
 
+        // Приватный метод для преобразования объекта в строку SQL-запроса для обновления записи
         private string Update(BaseEntity entity)
         {
             List<PropertyInfo> props = entity.GetType().GetProperties().ToList();
@@ -210,7 +225,7 @@ namespace PersonnelManagement.Model.DB
                     if (p.PropertyType == typeof(DateTime))
                     {
                         DateTime dateTimeValue = (DateTime)p.GetValue(entity);
-                        string formattedDateTime = dateTimeValue.ToString("yyyy-MM-dd"); // Форматируем дату и время в строку с подходящим форматом
+                        string formattedDateTime = dateTimeValue.ToString("yyyy-MM-dd");
                         command += $"{p.Name} = N'{formattedDateTime}', ";
                     }
                     else
@@ -232,7 +247,6 @@ namespace PersonnelManagement.Model.DB
 
             return command;
         }
-
 
         #endregion
     }
