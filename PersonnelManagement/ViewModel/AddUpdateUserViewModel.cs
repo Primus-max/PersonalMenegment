@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GalaSoft.MvvmLight.Command;
+using PersonnelManagement.Model;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
-using PersonnelManagement.Model;
 
 namespace PersonnelManagement.ViewModel
 {
@@ -80,11 +76,11 @@ namespace PersonnelManagement.ViewModel
 
         public override void Execute()
         {
-           if(Users.Login == "" || Users.Password == "")
-           {
+            if (Users.Login == "" || Users.Password == "")
+            {
                 Message("Не все поля заполнены");
                 return;
-           }
+            }
 
             switch (Action)
             {
