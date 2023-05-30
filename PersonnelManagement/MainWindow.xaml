@@ -350,14 +350,21 @@
                             </Grid.RowDefinitions>
 
                             <DataGrid ItemsSource="{Binding WorkerStatistics}" SelectedValue="{Binding SelectProjectsWorker}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
-                                <DataGrid.Columns>                                    
+                                <DataGrid.Columns>
                                     <DataGridTextColumn Header="Сотрудник" Binding="{Binding FullName}" Width="*"/>
                                     <DataGridTextColumn Header="Отдел" Binding="{Binding Department}" Width="*"/>
-                                    <DataGridTextColumn Header="Эффективность" Binding="{Binding Progress}" Width="*"/>
+                                    <DataGridTemplateColumn Header="Эффективность" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ProgressBar Value="{Binding Progress}" Minimum="0" Maximum="100"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
-                            <Grid Grid.Row="1">
+
+                            <!--<Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -384,7 +391,7 @@
                                 Margin="5" 
                                 FontSize="20"
                                 Style="{StaticResource MaterialDesignPaperLightButton}"/>
-                            </Grid>
+                            </Grid>-->
                         </Grid>
                     </TabItem.Content>
                 </TabItem>

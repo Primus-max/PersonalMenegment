@@ -13,11 +13,13 @@ namespace PersonnelManagement.Helpers
     {
         public ObservableCollection<Projects> Projects { get; }
         public ObservableCollection<Department> Departments { get; }
+        public ObservableCollection<Worker> Workers { get; }
 
-        public WorkerPerformanceCalculator(ObservableCollection<Projects> projects, ObservableCollection<Department> departments)
+        public WorkerPerformanceCalculator(ObservableCollection<Projects> projects, ObservableCollection<Department> departments, ObservableCollection<Worker> workers)
         {
             Projects = projects;
             Departments = departments;
+            Workers = workers;
         }
 
         public ObservableCollection<WorkerStatistic> CalculateWorkerPerformance()
@@ -26,43 +28,33 @@ namespace PersonnelManagement.Helpers
 
             foreach (var project in Projects)
             {
-                decimal totalBudget = 0;
-                decimal workerSalary = 0;
-                int projectsCompletedBeforeDeadline = 0;
+                // Находим сотрудника по имени
+                Worker worker = Workers.FirstOrDefault(w => w.FullName == project.ProjectManager);
 
-                // Перебираем все проекты работника
-                // Вычисляем общий бюджет и количество проектов, выполненных до срока
-                totalBudget += project.ProjectBudget;
-
-                if (project.FinishedDate < project.FinishProject)
+                if (worker != null)
                 {
-                    projectsCompletedBeforeDeadline++;
+                    // Находим отдел сотрудника
+                    Department workerDepartment = Departments.FirstOrDefault(d => d.Title == worker.Department?.Title);
+
+                    if (workerDepartment != null && workerDepartment.EmployeesCount > 0)
+                    {
+                        // Вычисляем прогресс проекта
+                        DateTime currentDate = DateTime.Now;
+                        TimeSpan projectDuration = project.FinishProject - project.StartProject;
+                        TimeSpan elapsedDuration = currentDate - project.StartProject;
+                        double progress = Math.Max(0, Math.Min(elapsedDuration.TotalDays / projectDuration.TotalDays, 1));
+
+                        // Создаем объект WorkerStatistic и добавляем его в коллекцию
+                        WorkerStatistic statistic = new WorkerStatistic
+                        {
+                            FullName = worker.FullName,
+                            Department = workerDepartment?.Title ?? "Unknown",
+                            Progress = (int)(progress * 100)
+                        };
+
+                        workerStatistics.Add(statistic);
+                    }
                 }
-
-                // Находим отдел сотрудника
-                Department workerDepartment = Departments.FirstOrDefault(d => d.Title == project.ProjectManager);
-
-                if (workerDepartment != null && workerDepartment.EmployeesCount > 0)
-                {
-                    // Вычисляем зарплату сотрудника
-                    workerSalary = totalBudget / workerDepartment.EmployeesCount;
-                }
-
-                // Вычисляем продуктивность работника
-                decimal productivity = projectsCompletedBeforeDeadline > 0 ? (decimal)projectsCompletedBeforeDeadline / Projects.Count : 0;
-
-                // Вычисляем значение продуктивности в процентах
-                int progress = (int)(productivity * 100);
-
-                // Создаем объект WorkerStatistic и добавляем его в коллекцию
-                WorkerStatistic statistic = new WorkerStatistic
-                {
-                    FullName = project.ProjectManager,
-                    Department = workerDepartment?.Title ?? "Unknown",
-                    Progress = progress
-                };
-
-                workerStatistics.Add(statistic);
             }
 
             return workerStatistics;

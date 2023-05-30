@@ -219,7 +219,7 @@ namespace PersonnelManagement.ViewModel
                 UserProject = new ObservableCollection<ProjectsWorker>(_data.ProjectsWorkers.Where(x => x.WorkerID == users.Worker.Id).ToList());
             }
 
-            WorkerPerformanceCalculator performanceCalculator = new WorkerPerformanceCalculator(Projects, Departments);
+            WorkerPerformanceCalculator performanceCalculator = new WorkerPerformanceCalculator(Projects, Departments, Workers);
             WorkerStatistics =  performanceCalculator.CalculateWorkerPerformance();
         }
 
