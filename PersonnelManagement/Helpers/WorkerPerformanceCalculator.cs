@@ -4,11 +4,12 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Linq;
 using PersonnelManagement.Model;
+using System.Collections.Generic;
+
 
 
 namespace PersonnelManagement.Helpers
 {
-
     public class WorkerPerformanceCalculator
     {
         public ObservableCollection<Projects> Projects { get; }
@@ -44,20 +45,33 @@ namespace PersonnelManagement.Helpers
                         TimeSpan elapsedDuration = currentDate - project.StartProject;
                         double progress = Math.Max(0, Math.Min(elapsedDuration.TotalDays / projectDuration.TotalDays, 1));
 
-                        // Создаем объект WorkerStatistic и добавляем его в коллекцию
-                        WorkerStatistic statistic = new WorkerStatistic
-                        {
-                            FullName = worker.FullName,
-                            Department = workerDepartment?.Title ?? "Unknown",
-                            Progress = (int)(progress * 100)
-                        };
+                        // Проверяем, существует ли уже запись о сотруднике в статистике
+                        WorkerStatistic existingStatistic = workerStatistics.FirstOrDefault(s => s.FullName == worker.FullName);
 
-                        workerStatistics.Add(statistic);
+                        if (existingStatistic != null)
+                        {
+                            // Обновляем прогресс существующей записи
+                            existingStatistic.Progress += (int)(progress * 100);
+                        }
+                        else
+                        {
+                            // Создаем новую запись в статистике
+                            WorkerStatistic statistic = new WorkerStatistic
+                            {
+                                FullName = worker.FullName,
+                                Department = workerDepartment?.Title ?? "Unknown",
+                                Progress = (int)(progress * 100)
+                            };
+
+                            workerStatistics.Add(statistic);
+                        }
                     }
                 }
             }
 
             return workerStatistics;
         }
+
     }
+
 }
