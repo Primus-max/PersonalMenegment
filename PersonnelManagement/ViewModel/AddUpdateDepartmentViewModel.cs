@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using PersonnelManagement.Model;
+using System.Linq;
 
 namespace PersonnelManagement.ViewModel
 {
@@ -60,7 +56,7 @@ namespace PersonnelManagement.ViewModel
                     }; break;
             }
 
-            Close(); 
+            Close();
         }
 
         // Команда, связанная с методом Execute

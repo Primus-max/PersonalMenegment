@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using PersonnelManagement.Model;
+using System;
 using System.Collections.ObjectModel;
-
+using System.Linq;
 
 namespace PersonnelManagement.ViewModel
 {
@@ -23,6 +19,7 @@ namespace PersonnelManagement.ViewModel
             }
         }
 
+        // Дата начала проекта
         private DateTime _selectedStartDate = DateTime.Now;
         public DateTime SelectedStartDate
         {
@@ -34,6 +31,7 @@ namespace PersonnelManagement.ViewModel
             }
         }
 
+        // Дата окончания проекта
         private DateTime _selectedFinishDate = DateTime.Now;
         public DateTime SelectedFinishDate
         {
@@ -52,7 +50,6 @@ namespace PersonnelManagement.ViewModel
             set
             {
                 _selectWorker = value;
-                //ProjectsWorker.WorkerID = value == null ? -1 : value.Id;
                 OnProperty("SelectWorker");
             }
         }
@@ -65,43 +62,56 @@ namespace PersonnelManagement.ViewModel
         public AddUpdateProjectsViewModel(DataModel data, Projects projects, string action)
         {
             _data = data;
+
+            // Если переданный проект равен null, создаем новый проект
             if (projects == null)
                 Projects = new Projects();
-            else Projects = projects;
+            else
+                Projects = projects;
 
             Action = action;
         }
 
+        // Метод, вызываемый при выполнении команды
         public override void Execute()
         {
-            if(Projects.Title == "")
+            // Проверяем, было ли введено название проекта
+            if (Projects.Title == "")
             {
                 Message("Не введено название");
-                return; 
+                return;
             }
 
+            // В зависимости от выбранного действия (Добавить или Обновить) выполняем соответствующую операцию
             switch (Action)
             {
                 case "Добавить":
                     {
+                        // Генерируем уникальный идентификатор для нового проекта
                         Projects.Id = _data.Projects.Count() == 0 ? 2 : _data.Projects.Last().Id + 1;
+
+                        // Присваиваем выбранные значения даты начала и окончания проекта, а также выбранного менеджера проекта
                         Projects.StartProject = SelectedStartDate;
                         Projects.FinishProject = SelectedFinishDate;
                         Projects.ProjectManager = SelectWorker.FullName;
-                        _data.Add(Projects);
+
+                        _data.Add(Projects); // Добавляем новый проект в модель данных
                     }; break;
                 case "Обновить":
                     {
+                        // Присваиваем выбранные значения даты начала и окончания проекта, а также выбранного менеджера проекта
                         Projects.StartProject = SelectedStartDate;
                         Projects.FinishProject = SelectedFinishDate;
                         Projects.ProjectManager = SelectWorker.FullName;
-                        _data.Update(Projects);
+
+                        _data.Update(Projects); // Обновляем информацию о проекте в модели данных
                     }; break;
             }
 
-            Close();
+            Close(); 
         }
 
+        // Команда, связанная с методом Execute
         public RelayCommand ExecuteCommand => new RelayCommand(Execute);
     }
 }
