@@ -14,7 +14,7 @@ namespace PersonnelManagement.Model
         public decimal ProjectBudget { get; set; }
         public string ProjectManager { get; set; }
         public DateTime FinishedDate { get; set; }
-        public int IsActive { get; set; }
+        public int IsActive { get; set; } = 1;
 
         public int ProgressBarValue
         {
@@ -24,10 +24,10 @@ namespace PersonnelManagement.Model
                 TimeSpan projectDuration = FinishProject - StartProject;
                 TimeSpan elapsedDuration = currentDate - StartProject;
 
-                // Calculate the progress as a percentage
+                // Вычисляю в процентах сотавшееся время в просцентах
                 int progress = (int)((elapsedDuration.TotalDays / projectDuration.TotalDays) * 1000);
 
-                // Make sure the progress value is within the valid range of 0-100
+                // Убеждаюсь, что значение не выйдет за границы
                 return Math.Max(0, Math.Min(progress, 100));
             }
         }

@@ -358,9 +358,8 @@ namespace PersonnelManagement.ViewModel
                 {
                     // Обновить поле FinishedDate в базе данных
                     projectInDatabase.FinishedDate = SelectProjects.FinishedDate;
+                    projectInDatabase.IsActive = 0;
                     _data.Update(projectInDatabase);
-                    // Выполнить сохранение изменений в базе данных
-                    //_data.SaveChanges();
                 }
             }
         }

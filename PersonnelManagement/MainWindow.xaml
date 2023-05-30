@@ -244,23 +244,53 @@
                                       AutoGenerateColumns="False" 
                                       CanUserAddRows="False" 
                                       IsReadOnly="True" 
-                                      Margin="5">
-                                <DataGrid.Resources>
-                                    <Style x:Key="GreenProgressBarStyle" TargetType="ProgressBar">
-                                        <Setter Property="Foreground" Value="Green"/>
-                                    </Style>
-                                </DataGrid.Resources>
+                                      Margin="5">                               
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="Auto"/>
-                                    <DataGridTextColumn Header="Ответственный" Binding="{Binding ProjectManager}" Width="*"/>
-                                    <DataGridTextColumn Header="Начало" Binding="{Binding  StartProject, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
-                                    <DataGridTextColumn Header="Конец" Binding="{Binding FinishProject, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"/>
-                                    <DataGridTextColumn Header="Бюджет" Binding="{Binding ProjectBudget, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*"/>
+                                    <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="Auto">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Ответственный" Binding="{Binding ProjectManager}" Width="*">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Начало" Binding="{Binding  StartProject, StringFormat=\{0:dd.MM.yyyy\}}" Width="*">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Конец" Binding="{Binding FinishProject, StringFormat=\{0:dd.MM.yyyy\}}" Width="*">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Бюджет" Binding="{Binding ProjectBudget, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
                                     <DataGridTemplateColumn Header="Статус" Width="Auto">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">                                                 
-                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"                                                            
                                                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                                                             ToolTip="Нажми чтобы закончить проект"
                                                             materialDesign:ButtonProgressAssist.IndicatorForeground="DarkGreen"                                                              
