@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using PersonnelManagement.Model;
 using PersonnelManagement.View;
+using PersonnelManagement.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -97,6 +98,7 @@ namespace PersonnelManagement.ViewModel
                 OnProperty("UserProject");
             }
         }
+        public ObservableCollection<WorkerStatistic> WorkerStatistics { get; set; }
         #endregion
 
         #region public Select
@@ -216,6 +218,9 @@ namespace PersonnelManagement.ViewModel
                 InputUsers = users;
                 UserProject = new ObservableCollection<ProjectsWorker>(_data.ProjectsWorkers.Where(x => x.WorkerID == users.Worker.Id).ToList());
             }
+
+            WorkerPerformanceCalculator performanceCalculator = new WorkerPerformanceCalculator(Projects, Departments);
+            WorkerStatistics =  performanceCalculator.CalculateWorkerPerformance();
         }
 
         #region Department

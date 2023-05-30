@@ -23,7 +23,8 @@
         FontSize="16" 
         WindowState="Maximized">
     <Window.Resources>
-        <local:SalaryConverter x:Key="SalaryConverter" />        
+        <local:SalaryConverter x:Key="SalaryConverter" />
+        <local:IsActiveToVisibilityConverter x:Key="IsActiveToVisibilityConverter" />
     </Window.Resources>
     <Border Padding="5">
     <Grid>
@@ -291,6 +292,7 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">                                                 
                                                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"                                                            
+                                                            
                                                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                                                             ToolTip="Нажми чтобы закончить проект"
                                                             materialDesign:ButtonProgressAssist.IndicatorForeground="DarkGreen"                                                              
@@ -338,6 +340,56 @@
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
+                        <TextBlock Text="Статистика" FontSize="16"/>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+
+                            <DataGrid ItemsSource="{Binding WorkerStatistics}" SelectedValue="{Binding SelectProjectsWorker}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                                <DataGrid.Columns>                                    
+                                    <DataGridTextColumn Header="Сотрудник" Binding="{Binding FullName}" Width="*"/>
+                                    <DataGridTextColumn Header="Отдел" Binding="{Binding Department}" Width="*"/>
+                                    <DataGridTextColumn Header="Эффективность" Binding="{Binding Progress}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Content="Добавить" 
+                                    Command="{Binding AddProjectsWorkerCommand}" 
+                                    Grid.Column="0" 
+                                    Margin="5" 
+                                    FontSize="20"
+                                    Style="{StaticResource MaterialDesignPaperLightButton}" />
+                                <Button 
+                                Content="Обновить" 
+                                Command="{Binding UpdateProjectsWorkerCommand}" 
+                                Grid.Column="1" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                                <Button 
+                                Content="Удалить" 
+                                Command="{Binding RemoveProjectsWorkerCommand}" 
+                                Grid.Column="2" 
+                                Margin="5" 
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignPaperLightButton}"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+                <!--<TabItem>
+                    <TabItem.Header>
                         <TextBlock Text="Проекты сотрудников" FontSize="16"/>
                     </TabItem.Header>
                     <TabItem.Content>
@@ -384,7 +436,7 @@
                             </Grid>
                         </Grid>
                     </TabItem.Content>
-                </TabItem>
+                </TabItem>-->
             </TabControl>
     </Grid>
     </Border>

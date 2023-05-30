@@ -101,6 +101,8 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\ProjectStatusCalculator.cs" />
     <Compile Include="Helpers\ProjectStatusHelper.cs" />
+    <Compile Include="Helpers\WorkerPerformanceCalculator.cs" />
+    <Compile Include="Model\WorkerStatistic.cs" />
     <Compile Include="ViewModel\AddUpdateDepartmentViewModel.cs" />
     <Compile Include="ViewModel\AddUpdatePositionViewModel.cs" />
     <Compile Include="ViewModel\AddUpdateProjectsViewModel.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="ViewModel\AddUpdateWorkerViewModel.cs" />
     <Compile Include="ViewModel\AutorizationViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Converters\IsActiveToVisibilityConverter.cs" />
     <Compile Include="ViewModel\Converters\ProjectStatusConverter.cs" />
     <Compile Include="ViewModel\Converters\SalaryConverter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
