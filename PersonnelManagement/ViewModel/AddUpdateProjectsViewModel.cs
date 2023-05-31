@@ -74,13 +74,11 @@ namespace PersonnelManagement.ViewModel
 
         // Метод, вызываемый при выполнении команды
         public override void Execute()
-        {
-            string projectName = Projects.Title;
+        {           
             // Проверяем, было ли введено название проекта
             if (String.IsNullOrWhiteSpace(Projects.Title))
             {
-                Message("Не введено название");
-                Projects.Title = projectName; 
+                Message("Не введено название");                
                 return;
             }
             if (SelectWorker == null)

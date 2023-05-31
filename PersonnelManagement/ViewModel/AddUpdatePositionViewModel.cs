@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using System;
+using GalaSoft.MvvmLight.Command;
 using PersonnelManagement.Model;
 using System.Linq;
 
@@ -34,10 +35,15 @@ namespace PersonnelManagement.ViewModel
         // Метод, вызываемый при выполнении команды
         public override void Execute()
         {
-            // Проверяем, введено ли название должности
-            if (Position.Title == "")
+            // Проверяем, введено ли название должности и зарплата           
+            if (String.IsNullOrWhiteSpace(Position.Title))
             {
-                Message("Не введено название");
+                Message("Не введено название");                
+                return;
+            }
+            if (Position.Salary == 0)
+            {
+                Message("Укажите зарплату для этой должности");
                 return;
             }
 
