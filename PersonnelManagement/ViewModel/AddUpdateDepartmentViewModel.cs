@@ -35,12 +35,12 @@ namespace PersonnelManagement.ViewModel
         public override void Execute()
         {
             // Проверяем, введено ли название отдела
-            if (Department.Title == "")
+            if (string.IsNullOrWhiteSpace(Department.Title))
             {
                 Message("Не введено название");
                 return;
             }
-
+           
             // В зависимости от выбранного действия (Добавить или Обновить) выполняем соответствующую операцию
             switch (Action)
             {
