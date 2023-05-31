@@ -75,12 +75,25 @@ namespace PersonnelManagement.ViewModel
         // Метод, вызываемый при выполнении команды
         public override void Execute()
         {
+            string projectName = Projects.Title;
             // Проверяем, было ли введено название проекта
-            if (Projects.Title == "")
+            if (String.IsNullOrWhiteSpace(Projects.Title))
             {
                 Message("Не введено название");
+                Projects.Title = projectName; 
                 return;
             }
+            if (SelectWorker == null)
+            {
+                Message("Вы не указали ответственного за проект");
+                return;
+            }
+            if (Projects.ProjectBudget == 0)
+            {
+                Message("Вы не указали бюджет проекта");
+                return;
+            }
+
 
             // В зависимости от выбранного действия (Добавить или Обновить) выполняем соответствующую операцию
             switch (Action)
