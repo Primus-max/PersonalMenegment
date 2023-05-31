@@ -76,7 +76,7 @@ namespace PersonnelManagement.ViewModel
 
         public override void Execute()
         {
-            if (Users.Login == "" || Users.Password == "")
+            if (string.IsNullOrWhiteSpace(Users.Login) || string.IsNullOrWhiteSpace(Users.Password))
             {
                 Message("Не все поля заполнены");
                 return;
