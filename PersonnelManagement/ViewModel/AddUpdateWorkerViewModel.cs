@@ -92,7 +92,8 @@ namespace PersonnelManagement.ViewModel
 
         public override void Execute()
         {
-            if(Worker.FullName == "")
+            // Проверка на коореткно введённые данные
+            if(string.IsNullOrWhiteSpace(Worker.FullName))
             {
                 Message("Не введено ФИО");
                 return;
