@@ -202,7 +202,7 @@ namespace PersonnelManagement.ViewModel
         {
             _data = data;
 
-            if(true)
+            if(users.RoleID == 1)
             {
                 IsAdmin = Visibility.Visible;
                 IsUser = Visibility.Collapsed;
@@ -461,7 +461,11 @@ namespace PersonnelManagement.ViewModel
                 Message("Не выбран пользователь");
                 return;
             }
-            
+            if (SelectUsers.IsUserAcrive == 1)
+            {
+                Message("Вы не можете удалить текущего пользователя");
+                return;
+            }
 
             _data.Remove(SelectUsers);
         }
