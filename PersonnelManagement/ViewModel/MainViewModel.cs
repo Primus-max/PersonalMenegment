@@ -159,7 +159,6 @@ namespace PersonnelManagement.ViewModel
             }
         }
 
-        public Button SelectedButton { get; set; }
         #endregion
 
         #region Visibility
@@ -225,6 +224,15 @@ namespace PersonnelManagement.ViewModel
 
             WorkerPerformanceCalculator performanceCalculator = new WorkerPerformanceCalculator(Projects, Departments, Workers);
             WorkerStatistics =  performanceCalculator.CalculateWorkerPerformance();
+
+            // Проверяю какие кнопки в статусах показывать
+            foreach (var project in Projects)
+            {
+                if (project.IsActive == 1)
+                {
+                    // Логика для сокрытия кнопок
+                }
+            }
         }
 
         #region Department
@@ -372,7 +380,10 @@ namespace PersonnelManagement.ViewModel
                 }
             }
 
+            // Скрываю кнопку и записываю в базу
             button.Visibility = Visibility.Hidden;
+            SelectProjects.IsActive = 1;
+            _data.Update(SelectProjects);
         }       
         #endregion
 
@@ -450,6 +461,7 @@ namespace PersonnelManagement.ViewModel
                 Message("Не выбран пользователь");
                 return;
             }
+            
 
             _data.Remove(SelectUsers);
         }
