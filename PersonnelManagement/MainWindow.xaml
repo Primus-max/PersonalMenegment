@@ -298,7 +298,8 @@
                                                             materialDesign:ButtonProgressAssist.Value="{Binding ProgressBarValue}"
                                                             Content="{materialDesign:PackIcon DotsHorizontal}"
                                                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
-                                                            Command="{Binding DataContext.StopProjectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGrid}}"                                                                                                                        
+                                                            Command="{Binding DataContext.StopProjectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGrid}}" 
+                                                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                                                             Visibility="{Binding DataContext.ButtonVisibility, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGrid}}"/>
                                                 </StackPanel>
                                             </DataTemplate>

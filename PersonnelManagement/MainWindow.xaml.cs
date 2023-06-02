@@ -28,5 +28,13 @@ namespace PersonnelManagement
             MainViewModel model = new MainViewModel(data, users);
             this.DataContext = model;
         }
+
+        //private void HiddenBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if(sender is Button button)
+        //    {
+        //        button.Visibility = Visibility.Hidden;
+        //    }
+        //}
     }
 }
