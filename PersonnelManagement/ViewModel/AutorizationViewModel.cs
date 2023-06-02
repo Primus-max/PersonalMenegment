@@ -32,19 +32,19 @@ namespace PersonnelManagement.ViewModel
 
         public override void Execute()
         {
-            if (User.Login == "" || User.Password == "")
-            {
-                Message("Не все поля заполнены");
-                return;
-            }
+            //if (User.Login == "" || User.Password == "")
+            //{
+            //    Message("Не все поля заполнены");
+            //    return;
+            //}
 
-            Users temp = _data.Users.Where(x => x.Login == User.Login && x.Password == User.Password).FirstOrDefault();
+            //Users temp = _data.Users.Where(x => x.Login == User.Login && x.Password == User.Password).FirstOrDefault();
             Users temp = new Users();
-            if (temp == null)
-            {
-                Message("Неправильный логин или пароль");
-                return;
-            }
+            //if (temp == null)
+            //{
+            //    Message("Неправильный логин или пароль");
+            //    return;
+            //}
 
             Hide();
             MainWindow main = new MainWindow(_data, temp);

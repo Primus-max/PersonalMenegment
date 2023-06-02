@@ -291,15 +291,15 @@
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">                                                 
-                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"                                                            
-                                                            
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" 
                                                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                                                             ToolTip="Нажми чтобы закончить проект"
                                                             materialDesign:ButtonProgressAssist.IndicatorForeground="DarkGreen"                                                              
                                                             materialDesign:ButtonProgressAssist.Value="{Binding ProgressBarValue}"
                                                             Content="{materialDesign:PackIcon DotsHorizontal}"
                                                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
-                                                            Command="{Binding DataContext.StopProjectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGrid}}"/>
+                                                            Command="{Binding DataContext.StopProjectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGrid}}"                                                                                                                        
+                                                            Visibility="{Binding DataContext.ButtonVisibility, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGrid}}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>

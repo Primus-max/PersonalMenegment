@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace PersonnelManagement.ViewModel
 {
@@ -155,7 +156,9 @@ namespace PersonnelManagement.ViewModel
                 _selectWorker = value;
                 OnProperty("SelectWorkers");
             }
-        }       
+        }
+
+        public Button SelectedButton { get; set; }
         #endregion
 
         #region Visibility
@@ -181,6 +184,19 @@ namespace PersonnelManagement.ViewModel
                 OnProperty("IsUser");
             }
         }
+
+        private Visibility _buttonVisibility = Visibility.Visible;
+
+        public Visibility ButtonVisibility
+        {
+            get { return _buttonVisibility; }
+            set
+            {
+                _buttonVisibility = value;
+                OnProperty(nameof(ButtonVisibility));
+            }
+        }
+
         #endregion
 
         public Users InputUsers
@@ -366,7 +382,15 @@ namespace PersonnelManagement.ViewModel
                     _data.Update(projectInDatabase);
                 }
             }
-        }
+
+            //if (parameter is Button button)
+            //{
+            //    SelectedButton = button;
+            //    // Обработка нажатия кнопки
+            //}
+
+            ButtonVisibility = Visibility.Hidden;
+        }       
         #endregion
 
         #region ProjectsWorker
@@ -528,7 +552,7 @@ namespace PersonnelManagement.ViewModel
         public RelayCommand AddProjectsCommand => new RelayCommand(AddProjects);
         public RelayCommand UpdateProjectsCommand => new RelayCommand(UpdateProjects);
         public RelayCommand RemoveProjectsCommand => new RelayCommand(RemoveProjects);
-        public RelayCommand StopProjectCommand => new RelayCommand(StopProject);
+        public RelayCommand StopProjectCommand => new RelayCommand(StopProject);        
 
         public RelayCommand AddProjectsWorkerCommand => new RelayCommand(AddProjectsWorker);
         public RelayCommand UpdateProjectsWorkerCommand => new RelayCommand(UpdateProjectsWorker);
