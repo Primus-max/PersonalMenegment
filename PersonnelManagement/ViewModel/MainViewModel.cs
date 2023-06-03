@@ -461,7 +461,7 @@ namespace PersonnelManagement.ViewModel
                 Message("Не выбран пользователь");
                 return;
             }
-            if (SelectUsers.IsUserAcrive == 1)
+            if (SelectUsers.IsUserAcrive == true)
             {
                 Message("Вы не можете удалить текущего пользователя");
                 return;
@@ -475,6 +475,16 @@ namespace PersonnelManagement.ViewModel
             _data.Remove(users);
 
             Users = _data.Users;
+        }
+
+        // Убираю активных юзеров
+        public void CloseWindow()
+        {            
+            foreach (var user in Users)
+            {
+                user.IsUserAcrive = false;
+                _data.Update(user);
+            }
         }
         #endregion
 
@@ -510,18 +520,36 @@ namespace PersonnelManagement.ViewModel
                 Message("Сотрудник не выбран");
                 return;
             }
+            // Получить идентификатор выбранного работника
+            int selectedWorkerId = SelectWorkers.Id;
 
-            List<Users> users = _data.Users.Where(x => x.WorkerID == SelectWorkers.Id).ToList();
-            List<ProjectsWorker> projectsWorkers = _data.ProjectsWorkers.Where(x => x.WorkerID == SelectWorkers.Id).ToList();
+            // Проверить каждого пользователя в списке
+            foreach (var user in Users)
+            {
+                // Получить идентификатор текущего пользователя
+                int currentUserId = user.Id;
 
-            users.ForEach(x => RemoveUser(x));
-            projectsWorkers.ForEach(x => RemoveProjectsWorker(x));
+                // Проверить, является ли выбранный работник текущим пользователем
+                if (selectedWorkerId == currentUserId)
+                {
+                    Message("Вы не можете удалить текущего пользователя");
+                    break;
+                }
+                else
+                {
+                    List<Users> users = _data.Users.Where(x => x.WorkerID == SelectWorkers.Id).ToList();
+                    List<ProjectsWorker> projectsWorkers = _data.ProjectsWorkers.Where(x => x.WorkerID == SelectWorkers.Id).ToList();
 
-            _data.Remove(SelectWorkers);
+                    users.ForEach(x => RemoveUser(x));
+                    projectsWorkers.ForEach(x => RemoveProjectsWorker(x));
 
-            Workers = _data.Workers;
-            ProjectsWorkers = _data.ProjectsWorkers;
-            Users = _data.Users;
+                    _data.Remove(SelectWorkers);
+
+                    Workers = _data.Workers;
+                    ProjectsWorkers = _data.ProjectsWorkers;
+                    Users = _data.Users;
+                }
+            }            
         }
 
         public void RemoveWorker(Worker worker)
@@ -564,6 +592,8 @@ namespace PersonnelManagement.ViewModel
 
         public RelayCommand AddWorkerCommand => new RelayCommand(AddWorker);
         public RelayCommand UpdateWorkerCommand => new RelayCommand(UpdateWorker);
-        public RelayCommand RemoveWorkerCommand => new RelayCommand(RemoveWorker);       
+        public RelayCommand RemoveWorkerCommand => new RelayCommand(RemoveWorker);
+
+        public RelayCommand CloseWindowCommand => new RelayCommand(CloseWindow);
     }
 }

@@ -121,6 +121,7 @@ namespace PersonnelManagement.Model.DB
                         RoleID = int.Parse(dr["RoleID"].ToString()),
                         Login = dr["Login"].ToString(),
                         Password = dr["Password"].ToString(),
+                        IsUserAcrive = Convert.ToBoolean(dr["IsUserAcrive"])
                     }).ToList();
 
             return new ObservableCollection<Users>(temp);

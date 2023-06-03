@@ -46,9 +46,8 @@ namespace PersonnelManagement.ViewModel
                 return;
             }
 
-
-            User.IsUserAcrive = 1;
-            _data.Update(User);
+            temp.IsUserAcrive = true;
+            _data.Update(temp);
 
             Hide();
             MainWindow main = new MainWindow(_data, temp);

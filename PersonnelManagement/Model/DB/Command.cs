@@ -12,8 +12,8 @@ namespace PersonnelManagement.Model.DB
     public class Command : ICommand
     {
         //Строка подключения к БД
-        private string SQLConnection = @"Server=DESKTOP-FUOOUNG;Database=Test;Trusted_Connection=True;";
-        //private string SQLConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Z:\Programming\ProjectC#\PersonnelManagement\PersonnelManagement\PersonnelManagement\Test.mdf;Integrated Security=True";
+        //private string SQLConnection = @"Server=DESKTOP-FUOOUNG;Database=Test;Trusted_Connection=True;";
+        private string SQLConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Z:\Programming\ProjectC#\PersonnelManagement\PersonnelManagement\PersonnelManagement\Test.mdf;Integrated Security=True";
         private SqlConnection connection;
 
         public Command()
@@ -54,7 +54,5 @@ namespace PersonnelManagement.Model.DB
             command.ExecuteNonQuery();
             connection.Close();
         }
-
-
     }
 }

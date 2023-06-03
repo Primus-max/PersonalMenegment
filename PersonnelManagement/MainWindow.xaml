@@ -21,7 +21,8 @@
         Width="900" 
         FontFamily="Cascadia Mono" 
         FontSize="16" 
-        WindowState="Maximized">
+        WindowState="Maximized"
+        >
     <Window.Resources>
         <local:SalaryConverter x:Key="SalaryConverter" />
         <local:IsActiveToVisibilityConverter x:Key="IsActiveToVisibilityConverter" />
