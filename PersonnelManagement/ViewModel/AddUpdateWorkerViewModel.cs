@@ -14,6 +14,7 @@ namespace PersonnelManagement.ViewModel
         private Worker _worker;
         private Department _selectDepartment;
         private Position _selectPosition;
+        private DateTime _selectDateOfHire = DateTime.Now;
 
         public Worker Worker
         {
@@ -57,29 +58,42 @@ namespace PersonnelManagement.ViewModel
             }
         }
 
+        public DateTime SelectDateOfHire
+        {
+            get => _selectDateOfHire;
+            set
+            {
+                _selectDateOfHire = value;
+                OnProperty("SelectDateOfHire");
+            }
+        }
+
         public AddUpdateWorkerViewModel(DataModel data, Worker worker, string action)
         {
             _data = data;
 
-            if(worker == null)
+            if (worker == null)
             {
                 Worker = new Worker();
-                SelectDepartment = Departments[0];
-                SelectPosition = Positions[0];
+                SelectDepartment = Departments != null && Departments.Count > 0 ? Departments[0] : null;
+                SelectPosition = Positions != null && Positions.Count > 0 ? Positions[0] : null;
             }
             else
             {
                 Worker = worker;
                 SelectDepartment = worker.Department;
                 SelectPosition = worker.Position;
+                SelectDateOfHire = worker.DateOfHire;
             }
 
             Action = action;
         }
 
+
         public override void Execute()
         {
-            if(Worker.FullName == "")
+            // Проверка на коореткно введённые данные
+            if(string.IsNullOrWhiteSpace(Worker.FullName))
             {
                 Message("Не введено ФИО");
                 return;
@@ -90,10 +104,12 @@ namespace PersonnelManagement.ViewModel
                 case "Добавить":
                     {
                         Worker.Id = _data.Workers.Count() == 0 ? 2 : _data.Workers.Last().Id + 1;
+                        Worker.DateOfHire = SelectDateOfHire;
                         _data.Add(Worker);
                     }; break;
                 case "Обновить":
                     {
+                        Worker.DateOfHire = SelectDateOfHire;
                         _data.Update(Worker);
                     }; break;
             }

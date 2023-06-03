@@ -2,6 +2,7 @@
 using PersonnelManagement.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,19 @@ namespace PersonnelManagement
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainViewModel model;
         public MainWindow(DataModel data, Users users)
         {
             InitializeComponent();
-            MainViewModel model = new MainViewModel(data, users);
+             model = new MainViewModel(data, users);
             this.DataContext = model;
+
+            Closing += OnWindowClosing;
+        }
+
+        private void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            model.CloseWindowCommand.Execute(null);
         }
     }
 }

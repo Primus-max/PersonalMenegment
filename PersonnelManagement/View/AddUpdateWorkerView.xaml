@@ -5,41 +5,113 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelManagement.View" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdateWorkerViewModel}"
         mc:Ignorable="d"
-        Title="AddUpdateWorkerView" Height="250" Width="800" WindowStartupLocation="CenterScreen">
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        
+        Title="Добавление/изменение сотрудников" 
+        Height="370" 
+        Width="650" 
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
 
-        <Label Content="Отдел" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Должность" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="1"/>
-        <Label Content="ФИО" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="2"/>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="Должность" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono" 
+                   Grid.Row="1"/>
+            <ComboBox ItemsSource="{Binding Positions}" 
+                      SelectedValue="{Binding SelectPosition}" 
+                      MinWidth="450"
+                      Margin="39,0,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Cascadia Mono"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="Отдел" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <ComboBox ItemsSource="{Binding Departments}" 
+                      SelectedValue="{Binding SelectDepartment}" 
+                      MinWidth="450"
+                      Margin="85,0,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" 
+                                   FontSize="20" 
+                                   FontFamily="Cascadia Mono"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="ФИО" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <TextBox Text="{Binding Worker.FullName}" 
+                     FontSize="20" 
+                     FontFamily="Cascadia Mono" 
+                     MinWidth="450"
+                     Margin="109,0,0,0" 
+                     VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 0">
+            <Label Content="Дата" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <DatePicker Width="240"
+                        Margin="98,0,0,0" 
+                        materialDesign:HintAssist.Hint="Выбор даты"
+                        materialDesign:HintAssist.HelperText="Дата трудоустройства"
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+                        SelectedDate="{Binding SelectDateOfHire}"  
+                        FirstDayOfWeek="Monday"
+                        Language="ru-RU"
+                        SelectedDateFormat="Short"/>
+        </StackPanel>
         
-        <ComboBox ItemsSource="{Binding Departments}" SelectedValue="{Binding SelectDepartment}" Grid.Row="0" Grid.Column="1" Margin="5">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Title}" FontSize="20"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
-        <ComboBox ItemsSource="{Binding Positions}" SelectedValue="{Binding SelectPosition}" Grid.Row="1" Grid.Column="1" Margin="5">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Title}" FontSize="20"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
-        <TextBox Text="{Binding Worker.FullName}" Grid.Row="2" Grid.Column="1" FontSize="20" Margin="5"/>
-        
-        <Button Content="{Binding Action}" Command="{Binding ExecuteCommand}" FontSize="20" Margin="5" Grid.Row="5" Grid.ColumnSpan="2"/>
+        <Button 
+            Content="{Binding Action}" 
+            Command="{Binding ExecuteCommand}" 
+            FontSize="20" 
+            FontFamily="Cascadia Mono" 
+            Width="210"
+            Height="40" 
+            Grid.Row="4"             
+            Style="{StaticResource MaterialDesignPaperLightButton}" />
     </Grid>
 </Window>

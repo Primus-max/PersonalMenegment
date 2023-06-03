@@ -39,12 +39,15 @@ namespace PersonnelManagement.ViewModel
             }
 
             Users temp = _data.Users.Where(x => x.Login == User.Login && x.Password == User.Password).FirstOrDefault();
-
-            if(temp == null)
+            //Users temp = new Users();
+            if (temp == null)
             {
-                Message("Логин и/или пароль неправильный");
+                Message("Неправильный логин или пароль");
                 return;
             }
+
+            temp.IsUserAcrive = true;
+            _data.Update(temp);
 
             Hide();
             MainWindow main = new MainWindow(_data, temp);

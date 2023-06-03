@@ -12,6 +12,7 @@ namespace PersonnelManagement.Model
         public int RoleID { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public bool IsUserAcrive { get; set; }
 
         public Worker Worker { get; set; }
         public Roles Roles { get; set; }

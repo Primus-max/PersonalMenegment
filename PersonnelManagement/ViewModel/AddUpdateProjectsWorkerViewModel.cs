@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GalaSoft.MvvmLight.Command;
+using PersonnelManagement.Model;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
-using PersonnelManagement.Model;
 
 namespace PersonnelManagement.ViewModel
 {
@@ -25,6 +21,7 @@ namespace PersonnelManagement.ViewModel
             }
         }
 
+        // Коллекция проектов
         public ObservableCollection<Projects> Projects
         {
             get => _data.Projects;
@@ -41,6 +38,7 @@ namespace PersonnelManagement.ViewModel
             }
         }
 
+        // Коллекция работников
         public ObservableCollection<Worker> Workers
         {
             get => _data.Workers;
@@ -53,7 +51,7 @@ namespace PersonnelManagement.ViewModel
             {
                 _selectWorker = value;
                 ProjectsWorker.WorkerID = value == null ? -1 : value.Id;
-                OnProperty("");
+                OnProperty("SelectWorker");
             }
         }
 
@@ -61,14 +59,16 @@ namespace PersonnelManagement.ViewModel
         {
             _data = data;
 
-            if(projectsWorker == null)
+            // Если переданный объект ProjectsWorker равен null, создаем новый объект ProjectsWorker и устанавливаем начальные значения для SelectProjects и SelectWorker
+            if (projectsWorker == null)
             {
                 ProjectsWorker = new ProjectsWorker();
-                SelectProjects = Projects[0];
-                SelectWorker = Workers[0];
+                SelectProjects = Projects != null && Projects.Count > 0 ? Projects[0] : null;
+                SelectWorker = Workers != null && Workers.Count > 0 ? Workers[0] : null;
             }
             else
             {
+                // Иначе используем переданный объект ProjectsWorker и устанавливаем значения для SelectProjects и SelectWorker
                 ProjectsWorker = projectsWorker;
                 SelectProjects = projectsWorker.Projects;
                 SelectWorker = projectsWorker.Worker;
@@ -77,24 +77,29 @@ namespace PersonnelManagement.ViewModel
             Action = action;
         }
 
+        // Метод, вызываемый при выполнении команды
         public override void Execute()
         {
+            // В зависимости от выбранного действия (Добавить или Обновить) выполняем соответствующую операцию
             switch (Action)
             {
                 case "Добавить":
                     {
+                        // Генерируем уникальный идентификатор для нового объекта ProjectsWorker
                         ProjectsWorker.Id = _data.ProjectsWorkers.Count() == 0 ? 2 : _data.ProjectsWorkers.Last().Id + 1;
-                        _data.Add(ProjectsWorker);
+
+                        _data.Add(ProjectsWorker); // Добавляем новый объект ProjectsWorker в модель данных
                     }; break;
                 case "Обновить":
                     {
-                        _data.Update(ProjectsWorker);
+                        _data.Update(ProjectsWorker); // Обновляем информацию о объекте ProjectsWorker в модели данных
                     }; break;
             }
 
             Close();
         }
 
+        // Команда, связанная с методом Execute
         public RelayCommand ExecuteCommand => new RelayCommand(Execute);
     }
 }

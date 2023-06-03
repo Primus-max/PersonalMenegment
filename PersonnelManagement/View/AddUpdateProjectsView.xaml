@@ -3,23 +3,127 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PersonnelManagement.View" xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdateProjectsViewModel}"
+        xmlns:local="clr-namespace:PersonnelManagement.View" 
+        xmlns:viewmodel="clr-namespace:PersonnelManagement.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdateProjectsViewModel}"
         mc:Ignorable="d"
-        Title="AddUpdateProjectsView" Height="150" Width="600" WindowStartupLocation="CenterScreen">
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        
+        Title="Добавление/изменение проектов" 
+        Height="450" 
+        Width="500" 
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
 
-        <Label Content="Название" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
-
-        <TextBox Text="{Binding Projects.Title}" Grid.Column="1" Margin="5" FontSize="20"/>
-
-        <Button Content="{Binding Action}" Command="{Binding ExecuteCommand}" FontSize="20" Margin="5" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <StackPanel Grid.Row="0" 
+                    Orientation="Horizontal"
+                    Margin="20 0 0 0">
+            <Label Content="Название" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <TextBox Text="{Binding Projects.Title}" 
+                     MinWidth="310"
+                     Margin="20,0,0,0" 
+                     FontSize="18" 
+                     FontFamily="Cascadia Mono" 
+                     VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal"
+                    Margin="20 0 0 0">
+            <Label Content="Отв-ный" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <ComboBox ItemsSource="{Binding Workers}" 
+                  SelectedValue="{Binding SelectWorker}"  
+                  MinWidth="310"
+                  Margin="33,0,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding FullName}" FontSize="20" FontFamily="Cascadia Mono"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="20 0 0 0">
+            <Label Content="Начало" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <DatePicker Width="240"
+                        Margin="41,0,0,0" 
+                        materialDesign:HintAssist.Hint="Выбор даты"
+                        materialDesign:HintAssist.HelperText="Дата начала проекта"
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+                        SelectedDate="{Binding SelectedStartDate}"  
+                        FirstDayOfWeek="Monday"
+                        Language="ru-RU"
+                        SelectedDateFormat="Short"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    Margin="20 0 0 0">
+            <Label Content="Конец" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <DatePicker Width="240"
+                        Margin="53,0,0,0" 
+                        materialDesign:HintAssist.Hint="Выбор даты"
+                        materialDesign:HintAssist.HelperText="Дата завершения проекта"
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+                        SelectedDate="{Binding SelectedFinishDate}"  
+                        FirstDayOfWeek="Monday"
+                        Language="ru-RU"
+                        SelectedDateFormat="Short"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" 
+                    Orientation="Horizontal"
+                    Margin="20 0 0 0">
+            <Label Content="Бюджет" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   FontFamily="Cascadia Mono"/>
+            <TextBox Text="{Binding Projects.ProjectBudget}" 
+                     MinWidth="310"
+                     Margin="44,0,0,0" 
+                     FontSize="18" 
+                     FontFamily="Cascadia Mono" 
+                     VerticalAlignment="Center"/>
+        </StackPanel>
+        <Button 
+            Content="{Binding Action}" 
+            Command="{Binding ExecuteCommand}" 
+            FontSize="20" 
+            FontFamily="Cascadia Mono" 
+            Width="210"
+            Height="40"
+            Grid.Row="5"
+            Style="{StaticResource MaterialDesignPaperLightButton}" />
     </Grid>
 </Window>

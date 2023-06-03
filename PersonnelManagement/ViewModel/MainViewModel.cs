@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using PersonnelManagement.Model;
 using PersonnelManagement.View;
+using PersonnelManagement.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PersonnelManagement.ViewModel
 {
@@ -30,7 +33,7 @@ namespace PersonnelManagement.ViewModel
         private Projects _selectProjects;
         private ProjectsWorker _selectProjectsWorker;
         private Users _selectUsers;
-        private Worker _selectWorker;
+        private Worker _selectWorker;      
         #endregion
 
         #region public Collection
@@ -97,6 +100,7 @@ namespace PersonnelManagement.ViewModel
                 OnProperty("UserProject");
             }
         }
+        public ObservableCollection<WorkerStatistic> WorkerStatistics { get; set; }
         #endregion
 
         #region public Select
@@ -154,6 +158,7 @@ namespace PersonnelManagement.ViewModel
                 OnProperty("SelectWorkers");
             }
         }
+
         #endregion
 
         #region Visibility
@@ -179,6 +184,7 @@ namespace PersonnelManagement.ViewModel
                 OnProperty("IsUser");
             }
         }
+       
         #endregion
 
         public Users InputUsers
@@ -196,7 +202,6 @@ namespace PersonnelManagement.ViewModel
         {
             _data = data;
 
-
             if(users.RoleID == 1)
             {
                 IsAdmin = Visibility.Visible;
@@ -207,7 +212,7 @@ namespace PersonnelManagement.ViewModel
                 Projects = _data.Projects;
                 ProjectsWorkers = _data.ProjectsWorkers;
                 Users = _data.Users;
-                Workers = _data.Workers;
+                Workers = _data.Workers;                
             }
             else
             {
@@ -215,6 +220,18 @@ namespace PersonnelManagement.ViewModel
                 IsUser = Visibility.Visible;
                 InputUsers = users;
                 UserProject = new ObservableCollection<ProjectsWorker>(_data.ProjectsWorkers.Where(x => x.WorkerID == users.Worker.Id).ToList());
+            }
+
+            WorkerPerformanceCalculator performanceCalculator = new WorkerPerformanceCalculator(Projects, Departments, Workers);
+            WorkerStatistics =  performanceCalculator.CalculateWorkerPerformance();
+
+            // Проверяю какие кнопки в статусах показывать
+            foreach (var project in Projects)
+            {
+                if (project.IsActive == 1)
+                {
+                    // Логика для сокрытия кнопок
+                }
             }
         }
 
@@ -342,6 +359,32 @@ namespace PersonnelManagement.ViewModel
             Projects = _data.Projects;
             ProjectsWorkers = _data.ProjectsWorkers;
         }
+        private void StopProject(Button button)
+        {
+            // Проверить, что выбранный проект не является null
+            if (SelectProjects != null)
+            {
+                // Установить поле FinishedDate текущей датой и временем
+                SelectProjects.FinishedDate = DateTime.Now;
+
+                // Найти проект в базе данных по идентификатору
+                var projectInDatabase = _data.Projects.FirstOrDefault(p => p.Id == SelectProjects.Id);
+
+                // Проверить, что проект найден
+                if (projectInDatabase != null)
+                {
+                    // Обновить поле FinishedDate в базе данных
+                    projectInDatabase.FinishedDate = SelectProjects.FinishedDate;
+                    projectInDatabase.IsActive = 0;
+                    _data.Update(projectInDatabase);
+                }
+            }
+
+            // Скрываю кнопку и записываю в базу
+            button.Visibility = Visibility.Hidden;
+            SelectProjects.IsActive = 1;
+            _data.Update(SelectProjects);
+        }       
         #endregion
 
         #region ProjectsWorker
@@ -357,7 +400,7 @@ namespace PersonnelManagement.ViewModel
         {
             if(SelectProjectsWorker == null)
             {
-                Message("Проект работника не выбран");
+                Message("Проект сотрудника не выбран");
                 return;
             }
 
@@ -371,7 +414,7 @@ namespace PersonnelManagement.ViewModel
         {
             if (SelectProjectsWorker == null)
             {
-                Message("Проект работника не выбран");
+                Message("Проект сотрудника не выбран");
                 return;
             }
 
@@ -418,6 +461,11 @@ namespace PersonnelManagement.ViewModel
                 Message("Не выбран пользователь");
                 return;
             }
+            if (SelectUsers.IsUserAcrive == true)
+            {
+                Message("Вы не можете удалить текущего пользователя");
+                return;
+            }
 
             _data.Remove(SelectUsers);
         }
@@ -427,6 +475,16 @@ namespace PersonnelManagement.ViewModel
             _data.Remove(users);
 
             Users = _data.Users;
+        }
+
+        // Убираю активных юзеров
+        public void CloseWindow()
+        {            
+            foreach (var user in Users)
+            {
+                user.IsUserAcrive = false;
+                _data.Update(user);
+            }
         }
         #endregion
 
@@ -443,7 +501,7 @@ namespace PersonnelManagement.ViewModel
         {
             if(SelectWorkers == null)
             {
-                Message("Работика не выбран");
+                Message("Сотрудник не выбран");
                 return;
             }
 
@@ -459,21 +517,39 @@ namespace PersonnelManagement.ViewModel
         {
             if(SelectWorkers == null)
             {
-                Message("Работика не выбран");
+                Message("Сотрудник не выбран");
                 return;
             }
+            // Получить идентификатор выбранного работника
+            int selectedWorkerId = SelectWorkers.Id;
 
-            List<Users> users = _data.Users.Where(x => x.WorkerID == SelectWorkers.Id).ToList();
-            List<ProjectsWorker> projectsWorkers = _data.ProjectsWorkers.Where(x => x.WorkerID == SelectWorkers.Id).ToList();
+            // Проверить каждого пользователя в списке
+            foreach (var user in Users)
+            {
+                // Получить идентификатор текущего пользователя
+                int currentUserId = user.Id;
 
-            users.ForEach(x => RemoveUser(x));
-            projectsWorkers.ForEach(x => RemoveProjectsWorker(x));
+                // Проверить, является ли выбранный работник текущим пользователем
+                if (selectedWorkerId == currentUserId)
+                {
+                    Message("Вы не можете удалить текущего пользователя");
+                    break;
+                }
+                else
+                {
+                    List<Users> users = _data.Users.Where(x => x.WorkerID == SelectWorkers.Id).ToList();
+                    List<ProjectsWorker> projectsWorkers = _data.ProjectsWorkers.Where(x => x.WorkerID == SelectWorkers.Id).ToList();
 
-            _data.Remove(SelectWorkers);
+                    users.ForEach(x => RemoveUser(x));
+                    projectsWorkers.ForEach(x => RemoveProjectsWorker(x));
 
-            Workers = _data.Workers;
-            ProjectsWorkers = _data.ProjectsWorkers;
-            Users = _data.Users;
+                    _data.Remove(SelectWorkers);
+
+                    Workers = _data.Workers;
+                    ProjectsWorkers = _data.ProjectsWorkers;
+                    Users = _data.Users;
+                }
+            }            
         }
 
         public void RemoveWorker(Worker worker)
@@ -491,7 +567,7 @@ namespace PersonnelManagement.ViewModel
             Users = _data.Users;
         }
         #endregion
-
+      
         public RelayCommand AddDepartmentCommand => new RelayCommand(AddDepartment);
         public RelayCommand UpdateDepartmentCommand => new RelayCommand(UpdateDepartment);
         public RelayCommand RemoveDepartmentCommand => new RelayCommand(RemoveDepartment);
@@ -503,6 +579,8 @@ namespace PersonnelManagement.ViewModel
         public RelayCommand AddProjectsCommand => new RelayCommand(AddProjects);
         public RelayCommand UpdateProjectsCommand => new RelayCommand(UpdateProjects);
         public RelayCommand RemoveProjectsCommand => new RelayCommand(RemoveProjects);
+        public RelayCommand<Button> StopProjectCommand => new RelayCommand<Button>(StopProject);
+
 
         public RelayCommand AddProjectsWorkerCommand => new RelayCommand(AddProjectsWorker);
         public RelayCommand UpdateProjectsWorkerCommand => new RelayCommand(UpdateProjectsWorker);
@@ -515,5 +593,7 @@ namespace PersonnelManagement.ViewModel
         public RelayCommand AddWorkerCommand => new RelayCommand(AddWorker);
         public RelayCommand UpdateWorkerCommand => new RelayCommand(UpdateWorker);
         public RelayCommand RemoveWorkerCommand => new RelayCommand(RemoveWorker);
+
+        public RelayCommand CloseWindowCommand => new RelayCommand(CloseWindow);
     }
 }
