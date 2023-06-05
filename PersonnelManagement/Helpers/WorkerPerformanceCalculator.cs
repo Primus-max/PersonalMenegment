@@ -48,7 +48,7 @@ namespace PersonnelManagement.Helpers
                         if (existingStatistic != null)
                         {
                             // Обновляем прогресс существующей записи
-                            existingStatistic.Progress += (int)(progress * 100);
+                            existingStatistic.Progress += (int)(progress * 100) * 1000;
                         }
                         else
                         {
@@ -65,7 +65,6 @@ namespace PersonnelManagement.Helpers
                     }
                 }
             }
-
             return workerStatistics;
         }
 

@@ -16,7 +16,7 @@ namespace PersonnelManagement.Model
         public decimal ProjectBudget { get; set; }
         public string ProjectManager { get; set; }
         public DateTime FinishedDate { get; set; }
-        public int IsActive { get; set; } = 1;
+        public bool IsActive { get; set; }
         
         public int ProgressBarValue
         {

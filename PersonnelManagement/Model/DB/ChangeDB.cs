@@ -68,7 +68,8 @@ namespace PersonnelManagement.Model.DB
                         FinishProject = DateTime.Parse(dr["FinishProject"].ToString()),
                         ProjectBudget = decimal.Parse(dr["ProjectBudget"].ToString()),
                         ProjectManager = dr["ProjectManager"].ToString(),
-                        FinishedDate = DateTime.Parse(dr["FinishedDate"].ToString())
+                        FinishedDate = DateTime.Parse(dr["FinishedDate"].ToString()),
+                        IsActive = Convert.ToBoolean(dr["IsActive"])
                     }).ToList();
 
             return new ObservableCollection<Projects>(temp);
@@ -85,7 +86,7 @@ namespace PersonnelManagement.Model.DB
                     {
                         Id = int.Parse(dr["Id"].ToString()),
                         ProjectsId = int.Parse(dr["ProjectsId"].ToString()),
-                        WorkerID = int.Parse(dr["WorkerID"].ToString())
+                        WorkerID = int.Parse(dr["WorkerID"].ToString()),                        
                     }).ToList();
 
             return new ObservableCollection<ProjectsWorker>(temp);

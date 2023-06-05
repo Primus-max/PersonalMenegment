@@ -25,6 +25,7 @@ namespace PersonnelManagement.ViewModel
         private ObservableCollection<Users> _users;
         private ObservableCollection<Worker> _workers;
         private ObservableCollection<ProjectsWorker> _userProject;
+        public ObservableCollection<WorkerStatistic> _workerStatistics;
         #endregion
 
         #region private Select
@@ -100,7 +101,16 @@ namespace PersonnelManagement.ViewModel
                 OnProperty("UserProject");
             }
         }
-        public ObservableCollection<WorkerStatistic> WorkerStatistics { get; set; }
+        public ObservableCollection<WorkerStatistic> WorkerStatistics 
+        {
+            get => _workerStatistics;
+            set
+            {
+                _workerStatistics = value;
+                OnProperty("WorkerStatistics");
+            }
+        }
+
         #endregion
 
         #region public Select
@@ -221,19 +231,23 @@ namespace PersonnelManagement.ViewModel
                 InputUsers = users;
                 UserProject = new ObservableCollection<ProjectsWorker>(_data.ProjectsWorkers.Where(x => x.WorkerID == users.Worker.Id).ToList());
             }
+        }
 
+        #region UpdateUI
+        private void UpdateStatisticsUI()
+        {
+            // Обновляю отображение статистики
             WorkerPerformanceCalculator performanceCalculator = new WorkerPerformanceCalculator(Projects, Departments, Workers);
-            WorkerStatistics =  performanceCalculator.CalculateWorkerPerformance();
+            ObservableCollection<WorkerStatistic> workerStatisticsCalculated = performanceCalculator.CalculateWorkerPerformance();
+            WorkerStatistics = new ObservableCollection<WorkerStatistic>();
 
-            // Проверяю какие кнопки в статусах показывать
-            foreach (var project in Projects)
+            foreach (var stat in workerStatisticsCalculated)
             {
-                if (project.IsActive == 1)
-                {
-                    // Логика для сокрытия кнопок
-                }
+                WorkerStatistics.Add(stat);
             }
         }
+
+        #endregion
 
         #region Department
         public void AddDepartment()
@@ -326,6 +340,8 @@ namespace PersonnelManagement.ViewModel
             add.ShowDialog();
 
             Projects = _data.Projects;
+
+            UpdateStatisticsUI();
         }
 
         public void UpdateProjects()
@@ -341,6 +357,8 @@ namespace PersonnelManagement.ViewModel
 
             Projects = _data.Projects;
             ProjectsWorkers = _data.ProjectsWorkers;
+
+            UpdateStatisticsUI();
         }
 
         public void RemoveProjects()
@@ -358,6 +376,8 @@ namespace PersonnelManagement.ViewModel
 
             Projects = _data.Projects;
             ProjectsWorkers = _data.ProjectsWorkers;
+
+            UpdateStatisticsUI();
         }
         private void StopProject(Button button)
         {
@@ -375,14 +395,14 @@ namespace PersonnelManagement.ViewModel
                 {
                     // Обновить поле FinishedDate в базе данных
                     projectInDatabase.FinishedDate = SelectProjects.FinishedDate;
-                    projectInDatabase.IsActive = 0;
+                    projectInDatabase.IsActive = false;
                     _data.Update(projectInDatabase);
                 }
             }
 
             // Скрываю кнопку и записываю в базу
             button.Visibility = Visibility.Hidden;
-            SelectProjects.IsActive = 1;
+            SelectProjects.IsActive = false;
             _data.Update(SelectProjects);
         }       
         #endregion

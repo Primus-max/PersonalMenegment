@@ -105,6 +105,7 @@ namespace PersonnelManagement.ViewModel
                         Projects.StartProject = SelectedStartDate;
                         Projects.FinishProject = SelectedFinishDate;
                         Projects.ProjectManager = SelectWorker.FullName;
+                        Projects.IsActive = true;
 
                         _data.Add(Projects); // Добавляем новый проект в модель данных
                     }; break;

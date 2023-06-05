@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonnelManagement.Model
 {
-    public class WorkerStatistic
+    public class WorkerStatistic: BaseEntity
     {
         public string FullName { get; set; }
         public string Department { get; set; }
