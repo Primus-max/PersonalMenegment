@@ -14,11 +14,7 @@ namespace PersonnelManagement.ViewModel
         public Users Users
         {
             get => _users;
-            set
-            {
-                _users = value;
-                OnProperty("Users");
-            }
+            set => Set(ref _users, value);
         }
 
         public ObservableCollection<Worker> Workers
@@ -31,9 +27,11 @@ namespace PersonnelManagement.ViewModel
             get => _selectWorker;
             set
             {
-                _selectWorker = value;
-                Users.WorkerID = value == null ? -1 : value.Id;
-                OnProperty("SelectWorker");
+                if(Set(ref _selectWorker, value))
+                {
+                    _selectWorker = value;
+                    Users.WorkerID = value == null ? -1 : value.Id;
+                }                
             }
         }
 
@@ -47,9 +45,11 @@ namespace PersonnelManagement.ViewModel
             get => _selectRole;
             set
             {
-                _selectRole = value;
-                Users.RoleID = value == null ? -1 : value.Id;
-                OnProperty("SelectRoles");
+                if(Set(ref _selectRole, value))
+                {
+                    _selectRole = value;
+                    Users.RoleID = value == null ? -1 : value.Id;
+                }
             }
         }
 
