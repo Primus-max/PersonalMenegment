@@ -39,7 +39,6 @@ namespace PersonnelManagement.ViewModel
         {
             get => _departments;
             set => Set(ref _departments, value);
-
         }
         public ObservableCollection<Position> Positions
         {
@@ -165,6 +164,8 @@ namespace PersonnelManagement.ViewModel
                 InputUsers = users;
                 UserProject = new ObservableCollection<ProjectsWorker>(_data.ProjectsWorkers.Where(x => x.WorkerID == users.Worker.Id).ToList());
             }
+
+            UpdateStatisticsUI();
         }
 
         #region UpdateUI

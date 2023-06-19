@@ -6,25 +6,22 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using GalaSoft.MvvmLight;
 using PersonnelManagement.Model;
 
 namespace PersonnelManagement.ViewModel
 {
-    public class BaseViewModel : INotifyPropertyChanged, IDisposable
+    public class BaseViewModel : ViewModelBase, INotifyPropertyChanged, IDisposable
     {
         protected DataModel _data;
-        protected string _action;
+        private string _action;
         
         public Action Close { get; set; }
 
         public string Action
         {
             get => _action;
-            set
-            {
-                _action = value;
-                OnProperty("Action");
-            }
+            set => Set(ref _action, value);
         }
 
         public void Message(string message)
@@ -46,7 +43,7 @@ namespace PersonnelManagement.ViewModel
         #endregion
 
         // Метод установки свойст
-        protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
+        protected new virtual bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
         {
             if (Equals(field, value)) return false;
             field = value;

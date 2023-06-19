@@ -27,8 +27,9 @@
         <local:SalaryConverter x:Key="SalaryConverter" />
         <local:IsActiveToVisibilityConverter x:Key="IsActiveToVisibilityConverter" />
     </Window.Resources>
-    <Border Padding="5">
-    <Grid>
+    
+    <Border Padding="5">        
+        <Grid>            
         <TabControl Visibility="{Binding IsAdmin}" TabStripPlacement="Left" >
             <TabItem>
                     <TabItem.Header>
@@ -143,10 +144,14 @@
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
 
-                        <DataGrid ItemsSource="{Binding Departments, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectDepartment}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                            <DataGrid ItemsSource="{Binding Departments, UpdateSourceTrigger=PropertyChanged}" 
+                                  SelectedValue="{Binding SelectDepartment}" 
+                                  AutoGenerateColumns="False" 
+                                  CanUserAddRows="False" 
+                                  IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Отдел" Binding="{Binding Title}" Width="*"/>
-                                <DataGridTextColumn Header="Сотрудников" Binding="{Binding EmployeesCount, Mode=TwoWay}" Width="*"/>
+                                    <DataGridTextColumn Header="Отдел" Binding="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                                    <DataGridTextColumn Header="Сотрудников" Binding="{Binding EmployeesCount, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         
@@ -340,9 +345,14 @@
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
-                <TabItem>
+                <TabItem Height="64" >
                     <TabItem.Header>
-                        <TextBlock Text="Статистика" FontSize="16"/>
+                        <TextBlock FontSize="16" TextAlignment="Center">
+                            <Run Text="Статистика"/>
+                            <LineBreak/>
+                            <Run Text="сотрудников"/>
+                        </TextBlock>
+
                     </TabItem.Header>
                     <TabItem.Content>
                         <Grid>
@@ -351,7 +361,12 @@
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
 
-                            <DataGrid ItemsSource="{Binding WorkerStatistics, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectProjectsWorker}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                            <DataGrid ItemsSource="{Binding WorkerStatistics}" 
+                                      SelectedValue="{Binding SelectProjectsWorker}" 
+                                      AutoGenerateColumns="False" 
+                                      CanUserAddRows="False" 
+                                      IsReadOnly="True" 
+                                      Margin="5">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Сотрудник" Binding="{Binding FullName}" Width="*"/>
                                     <DataGridTextColumn Header="Отдел" Binding="{Binding Department}" Width="*"/>
@@ -446,7 +461,7 @@
                         </Grid>
                     </TabItem.Content>
                 </TabItem>-->
-            </TabControl>
+            </TabControl>            
     </Grid>
     </Border>
 </Window>
