@@ -19,11 +19,7 @@ namespace PersonnelManagement.ViewModel
         public Worker Worker
         {
             get => _worker;
-            set
-            {
-                _worker = value;
-                OnProperty("Worker");
-            }
+            set => Set(ref _worker, value);
         }
 
         public ObservableCollection<Department> Departments
@@ -36,9 +32,11 @@ namespace PersonnelManagement.ViewModel
             get => _selectDepartment;
             set
             {
-                _selectDepartment = value;
-                Worker.DepartmentID = value == null ? -1 : value.Id;
-                OnProperty("SelectDepartment");
+                if (Set(ref _selectDepartment, value))
+                {
+                    _selectDepartment = value;
+                    Worker.DepartmentID = value == null ? -1 : value.Id;
+                }                
             }
         }
 
@@ -52,20 +50,19 @@ namespace PersonnelManagement.ViewModel
             get => _selectPosition;
             set
             {
-                _selectPosition = value;
-                Worker.PositionID = value == null ? -1 : value.Id;
-                OnProperty("SelectPosition");
+                if (Set(ref _selectPosition, value))
+                {
+                    _selectPosition = value;
+                    Worker.PositionID = value == null ? -1 : value.Id;
+                }               
             }
         }
 
         public DateTime SelectDateOfHire
         {
             get => _selectDateOfHire;
-            set
-            {
-                _selectDateOfHire = value;
-                OnProperty("SelectDateOfHire");
-            }
+            set => Set(ref _selectDateOfHire, value);
+            
         }
 
         public AddUpdateWorkerViewModel(DataModel data, Worker worker, string action)
