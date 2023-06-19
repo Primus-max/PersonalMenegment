@@ -41,7 +41,7 @@
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
 
-                        <DataGrid ItemsSource="{Binding Workers}" SelectedValue="{Binding SelectWorkers}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                        <DataGrid ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectWorkers}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
                                     <DataGridTextColumn Header="Должность" Binding="{Binding Position.Title}" Width="*"/>
@@ -241,7 +241,7 @@
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
 
-                            <DataGrid ItemsSource="{Binding Projects}"
+                            <DataGrid ItemsSource="{Binding Projects, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedValue="{Binding SelectProjects}" 
                                       AutoGenerateColumns="False" 
                                       CanUserAddRows="False" 
@@ -351,7 +351,7 @@
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
 
-                            <DataGrid ItemsSource="{Binding WorkerStatistics, Mode=TwoWay}" SelectedValue="{Binding SelectProjectsWorker}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                            <DataGrid ItemsSource="{Binding WorkerStatistics, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectProjectsWorker}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Сотрудник" Binding="{Binding FullName}" Width="*"/>
                                     <DataGridTextColumn Header="Отдел" Binding="{Binding Department}" Width="*"/>
