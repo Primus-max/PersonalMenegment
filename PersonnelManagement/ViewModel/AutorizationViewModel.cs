@@ -14,11 +14,7 @@ namespace PersonnelManagement.ViewModel
         public Users User
         {
             get => _user;
-            set
-            {
-                _user = value;
-                OnProperty("User");
-            }
+            set => Set(ref _user, value);
         }
 
         public Action Hide { get; set; }
