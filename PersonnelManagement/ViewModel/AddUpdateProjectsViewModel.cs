@@ -12,8 +12,7 @@ namespace PersonnelManagement.ViewModel
         public Projects Projects
         {
             get => _projects;
-            set => Set(ref _projects, value);
-            
+            set => Set(ref _projects, value);            
         }
 
         // Дата начала проекта

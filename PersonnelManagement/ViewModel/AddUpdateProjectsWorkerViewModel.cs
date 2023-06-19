@@ -14,11 +14,7 @@ namespace PersonnelManagement.ViewModel
         public ProjectsWorker ProjectsWorker
         {
             get => _projectsWorker;
-            set
-            {
-                _projectsWorker = value;
-                OnProperty("ProjectsWorker");
-            }
+            set => Set(ref _projectsWorker, value);
         }
 
         // Коллекция проектов
