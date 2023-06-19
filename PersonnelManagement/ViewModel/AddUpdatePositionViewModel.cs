@@ -12,11 +12,7 @@ namespace PersonnelManagement.ViewModel
         public Position Position
         {
             get => _position;
-            set
-            {
-                _position = value;
-                OnProperty("Position");
-            }
+            set => Set(ref _position, value);
         }
 
         public AddUpdatePositionViewModel(DataModel data, Position position, string action)

@@ -11,8 +11,7 @@ namespace PersonnelManagement.ViewModel
         public Department Department
         {
             get => _department;
-            set => Set(ref _department, value);
-            
+            set => Set(ref _department, value);            
         }
 
         public AddUpdateDepartmentViewModel(DataModel data, Department department, string action)
