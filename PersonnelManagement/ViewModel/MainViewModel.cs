@@ -38,74 +38,44 @@ namespace PersonnelManagement.ViewModel
         public ObservableCollection<Department> Departments
         {
             get => _departments;
-            set
-            {
-                _departments = value;
-                OnProperty("Departments");
-            }
+            set => Set(ref _departments, value);
+
         }
         public ObservableCollection<Position> Positions
         {
             get => _positions;
-            set
-            {
-                _positions = value;
-                OnProperty("Positions");
-            }
+            set => Set(ref _positions, value);
+
         }
         public ObservableCollection<Projects> Projects
         {
             get => _projects;
-            set
-            {
-                _projects = value;
-                OnProperty("Projects");
-            }
+            set => Set(ref _projects, value);
         }
         public ObservableCollection<ProjectsWorker> ProjectsWorkers
         {
             get => _projectsWorkers;
-            set
-            {
-                _projectsWorkers = value;
-                OnProperty("ProjectsWorkers");
-            }
+            set => Set(ref _projectsWorkers, value);
         }
         public ObservableCollection<Users> Users
         {
             get => _users;
-            set
-            {
-                _users = value;
-                OnProperty("Users");
-            }
+            set => Set(ref _users, value);
         }
         public ObservableCollection<Worker> Workers
         {
             get => _workers;
-            set
-            {
-                _workers = value;
-                OnProperty("Workers");
-            }
+            set => Set(ref _workers, value);
         }
         public ObservableCollection<ProjectsWorker> UserProject
         {
             get => _userProject;
-            set
-            {
-                _userProject = value;
-                OnProperty("UserProject");
-            }
+            set => Set(ref _userProject, value);
         }
         public ObservableCollection<WorkerStatistic> WorkerStatistics
         {
             get => _workerStatistics;
-            set
-            {
-                _workerStatistics = value;
-                OnProperty("WorkerStatistics");
-            }
+            set => Set(ref _workerStatistics, value);
         }
 
         #endregion
@@ -114,29 +84,17 @@ namespace PersonnelManagement.ViewModel
         public Department SelectDepartment
         {
             get => _selectDepartment;
-            set
-            {
-                _selectDepartment = value;
-                OnProperty("SelectDepartment");
-            }
+            set => Set(ref _selectDepartment, value);
         }
         public Position SelectPosition
         {
             get => _selectPosition;
-            set
-            {
-                _selectPosition = value;
-                OnProperty("SelectPosition");
-            }
+            set => Set(ref _selectPosition, value);
         }
         public Projects SelectProjects
         {
             get => _selectProjects;
-            set
-            {
-                _selectProjects = value;
-                OnProperty("SelectProjects");
-            }
+            set => Set(ref _selectProjects, value);
         }
         public ProjectsWorker SelectProjectsWorker
         {
@@ -150,20 +108,12 @@ namespace PersonnelManagement.ViewModel
         public Users SelectUsers
         {
             get => _selectUsers;
-            set
-            {
-                _selectUsers = value;
-                OnProperty("SelectUsers");
-            }
+            set => Set(ref _selectUsers, value);
         }
         public Worker SelectWorkers
         {
             get => _selectWorker;
-            set
-            {
-                _selectWorker = value;
-                OnProperty("SelectWorkers");
-            }
+            set => Set(ref _selectWorker, value);
         }
 
         #endregion
@@ -175,21 +125,13 @@ namespace PersonnelManagement.ViewModel
         public Visibility IsAdmin
         {
             get => _isAdmin;
-            set
-            {
-                _isAdmin = value;
-                OnProperty("IsAdmin");
-            }
+            set => Set(ref _isAdmin, value);
         }
 
         public Visibility IsUser
         {
             get => _isUser;
-            set
-            {
-                _isUser = value;
-                OnProperty("IsUser");
-            }
+            set => Set(ref _isUser, value);
         }
 
         #endregion
@@ -197,12 +139,7 @@ namespace PersonnelManagement.ViewModel
         public Users InputUsers
         {
             get => _users2;
-
-            set
-            {
-                _users2 = value;
-                OnProperty("InputUsers");
-            }
+            set => Set(ref _users2, value);
         }
 
         public MainViewModel(DataModel data, Users users)
