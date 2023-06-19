@@ -92,7 +92,7 @@
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
 
-                        <DataGrid ItemsSource="{Binding Users}" SelectedValue="{Binding SelectUsers}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                        <DataGrid ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectUsers}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ФИО" Binding="{Binding Worker.FullName}" Width="*"/>
                                 <DataGridTextColumn Header="Роль" Binding="{Binding Roles.Title}" Width="*"/>
@@ -143,7 +143,7 @@
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
 
-                        <DataGrid ItemsSource="{Binding Departments}" SelectedValue="{Binding SelectDepartment}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                        <DataGrid ItemsSource="{Binding Departments, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectDepartment}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Отдел" Binding="{Binding Title}" Width="*"/>
                                 <DataGridTextColumn Header="Сотрудников" Binding="{Binding EmployeesCount, Mode=TwoWay}" Width="*"/>
@@ -192,7 +192,7 @@
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
 
-                        <DataGrid ItemsSource="{Binding Positions}" SelectedValue="{Binding SelectPosition}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                        <DataGrid ItemsSource="{Binding Positions, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectPosition}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Долджность" Binding="{Binding Title}" Width="*"/>
                                     <DataGridTextColumn Header="З/П" Binding="{Binding Salary, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*" />

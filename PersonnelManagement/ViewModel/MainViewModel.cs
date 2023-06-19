@@ -1,16 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using PersonnelManagement.Helpers;
 using PersonnelManagement.Model;
 using PersonnelManagement.View;
-using PersonnelManagement.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace PersonnelManagement.ViewModel
 {
@@ -34,7 +31,7 @@ namespace PersonnelManagement.ViewModel
         private Projects _selectProjects;
         private ProjectsWorker _selectProjectsWorker;
         private Users _selectUsers;
-        private Worker _selectWorker;      
+        private Worker _selectWorker;
         #endregion
 
         #region public Collection
@@ -76,7 +73,7 @@ namespace PersonnelManagement.ViewModel
         }
         public ObservableCollection<Users> Users
         {
-            get => _users; 
+            get => _users;
             set
             {
                 _users = value;
@@ -85,7 +82,7 @@ namespace PersonnelManagement.ViewModel
         }
         public ObservableCollection<Worker> Workers
         {
-            get => _workers; 
+            get => _workers;
             set
             {
                 _workers = value;
@@ -101,7 +98,7 @@ namespace PersonnelManagement.ViewModel
                 OnProperty("UserProject");
             }
         }
-        public ObservableCollection<WorkerStatistic> WorkerStatistics 
+        public ObservableCollection<WorkerStatistic> WorkerStatistics
         {
             get => _workerStatistics;
             set
@@ -134,7 +131,7 @@ namespace PersonnelManagement.ViewModel
         }
         public Projects SelectProjects
         {
-            get => _selectProjects; 
+            get => _selectProjects;
             set
             {
                 _selectProjects = value;
@@ -194,13 +191,13 @@ namespace PersonnelManagement.ViewModel
                 OnProperty("IsUser");
             }
         }
-       
+
         #endregion
 
         public Users InputUsers
         {
             get => _users2;
-            
+
             set
             {
                 _users2 = value;
@@ -212,7 +209,7 @@ namespace PersonnelManagement.ViewModel
         {
             _data = data;
 
-            if(users.RoleID == 1)
+            if (users.RoleID == 1)
             {
                 IsAdmin = Visibility.Visible;
                 IsUser = Visibility.Collapsed;
@@ -222,7 +219,7 @@ namespace PersonnelManagement.ViewModel
                 Projects = _data.Projects;
                 ProjectsWorkers = _data.ProjectsWorkers;
                 Users = _data.Users;
-                Workers = _data.Workers;                
+                Workers = _data.Workers;
             }
             else
             {
@@ -260,7 +257,7 @@ namespace PersonnelManagement.ViewModel
 
         public void UpdateDepartment()
         {
-            if(SelectDepartment == null)
+            if (SelectDepartment == null)
             {
                 Message("Отдел не выбран");
                 return;
@@ -302,7 +299,7 @@ namespace PersonnelManagement.ViewModel
 
         public void UpdatePosition()
         {
-            if(SelectPosition == null)
+            if (SelectPosition == null)
             {
                 Message("Должность не выбрана");
                 return;
@@ -401,10 +398,10 @@ namespace PersonnelManagement.ViewModel
             }
 
             // Скрываю кнопку и записываю в базу
-            button.Visibility = Visibility.Hidden;
-            SelectProjects.IsActive = false;
-            _data.Update(SelectProjects);
-        }       
+            //button.Visibility = Visibility.Hidden;
+            //SelectProjects.IsActive = false;
+            //_data.Update(SelectProjects);
+        }
         #endregion
 
         #region ProjectsWorker
@@ -418,7 +415,7 @@ namespace PersonnelManagement.ViewModel
 
         public void UpdateProjectsWorker()
         {
-            if(SelectProjectsWorker == null)
+            if (SelectProjectsWorker == null)
             {
                 Message("Проект сотрудника не выбран");
                 return;
@@ -499,7 +496,7 @@ namespace PersonnelManagement.ViewModel
 
         // Убираю активных юзеров
         public void CloseWindow()
-        {            
+        {
             foreach (var user in Users)
             {
                 user.IsUserAcrive = false;
@@ -519,7 +516,7 @@ namespace PersonnelManagement.ViewModel
 
         public void UpdateWorker()
         {
-            if(SelectWorkers == null)
+            if (SelectWorkers == null)
             {
                 Message("Сотрудник не выбран");
                 return;
@@ -535,7 +532,7 @@ namespace PersonnelManagement.ViewModel
 
         public void RemoveWorker()
         {
-            if(SelectWorkers == null)
+            if (SelectWorkers == null)
             {
                 Message("Сотрудник не выбран");
                 return;
@@ -568,8 +565,10 @@ namespace PersonnelManagement.ViewModel
                     Workers = _data.Workers;
                     ProjectsWorkers = _data.ProjectsWorkers;
                     Users = _data.Users;
+
+                    break;
                 }
-            }            
+            }
         }
 
         public void RemoveWorker(Worker worker)
@@ -587,7 +586,7 @@ namespace PersonnelManagement.ViewModel
             Users = _data.Users;
         }
         #endregion
-      
+
         public RelayCommand AddDepartmentCommand => new RelayCommand(AddDepartment);
         public RelayCommand UpdateDepartmentCommand => new RelayCommand(UpdateDepartment);
         public RelayCommand RemoveDepartmentCommand => new RelayCommand(RemoveDepartment);
