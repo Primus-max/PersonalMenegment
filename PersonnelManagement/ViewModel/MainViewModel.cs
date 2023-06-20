@@ -182,6 +182,13 @@ namespace PersonnelManagement.ViewModel
             }
         }
 
+        public void UpdateUI()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Пустой блок для принудительного обновления UI
+            });
+        }
         #endregion
 
         #region Department
@@ -191,6 +198,8 @@ namespace PersonnelManagement.ViewModel
             add.ShowDialog();
 
             Departments = _data.Departments;
+
+            UpdateUI();
         }
 
         public void UpdateDepartment()
@@ -450,6 +459,8 @@ namespace PersonnelManagement.ViewModel
             add.ShowDialog();
 
             Workers = _data.Workers;
+
+            UpdateUI();
         }
 
         public void UpdateWorker()
