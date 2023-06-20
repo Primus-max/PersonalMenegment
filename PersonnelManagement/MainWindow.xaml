@@ -392,7 +392,8 @@
                                                                     Value="{Binding Progress}" 
                                                                     Minimum="0" 
                                                                     Maximum="100"                                                                    
-                                                                    Height="10"/>
+                                                                    Height="10" Background="#FFFB6E6E" Foreground="#FF00BF09"
+                                                                    />
                                                             </DataTemplate>
                                                         </DataGridTemplateColumn.CellTemplate>
                                                     </DataGridTemplateColumn>
@@ -421,7 +422,16 @@
                                     </TabItem.Header>
                                     <TabItem.Content>
                                         <Grid>
-                                            <!-- Код для вкладки "Отделы" -->
+                                            <DataGrid ItemsSource="{Binding DepartmentStatistics}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Header="Отдел" Binding="{Binding DepartmentName}" Width="*"/>
+                                                    <DataGridTextColumn Header="Количество сотрудников" Binding="{Binding EmployeeCount}" Width="*"/>
+                                                    <DataGridTextColumn Header="Общая прибыль" Binding="{Binding TotalProfit}" Width="*"/>
+                                                    <DataGridTextColumn Header="Бюджет" Binding="{Binding Budget}" Width="*"/>
+                                                    <DataGridTextColumn Header="Эффективность" Binding="{Binding Efficiency}" Width="*"/>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+
                                         </Grid>
                                     </TabItem.Content>
                                 </TabItem>
