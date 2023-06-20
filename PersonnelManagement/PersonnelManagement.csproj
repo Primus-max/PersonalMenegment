@@ -106,6 +106,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\WorkerPerformanceCalculator.cs" />
+    <Compile Include="Model\DepartmentStatistics.cs" />
     <Compile Include="Model\WorkerStatistic.cs" />
     <Compile Include="ViewModel\AddUpdateDepartmentViewModel.cs" />
     <Compile Include="ViewModel\AddUpdatePositionViewModel.cs" />
