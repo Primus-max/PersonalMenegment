@@ -80,7 +80,7 @@ namespace PersonnelManagement.ViewModel
         public ObservableCollection<DepartmentStatistics> DepartmentsStatistics
         {
             get => _departmentStatistics;
-            set => Set(ref _departmentStatistics, value);
+            set => 1Set(ref _departmentStatistics, value);
         }
 
         #endregion
@@ -174,7 +174,7 @@ namespace PersonnelManagement.ViewModel
             UpdateStatisticsUI();
 
             // Создаем экземпляр DepartmentStatisticsCalculator
-            DepartmentStatisticsCalculator statisticsCalculator = new DepartmentStatisticsCalculator(Departments, Positions, Workers);
+            DepartmentStatisticsCalculator statisticsCalculator = new DepartmentStatisticsCalculator(Departments, Positions, Workers, Projects);
 
             // Вычисляем статистику отделов
             ObservableCollection<DepartmentStatistics> departmentStatistics = statisticsCalculator.CalculateDepartmentStatistics();

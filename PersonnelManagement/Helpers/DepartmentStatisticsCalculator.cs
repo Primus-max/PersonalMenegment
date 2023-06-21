@@ -16,12 +16,14 @@ namespace PersonnelManagement.Helpers
         private ObservableCollection<Department> _departments;
         private ObservableCollection<Position> _positions;
         private ObservableCollection<Worker> _workers;
+        private ObservableCollection<Projects> _projects;
 
-        public DepartmentStatisticsCalculator(ObservableCollection<Department> departments, ObservableCollection<Position> positions, ObservableCollection<Worker> workers)
+        public DepartmentStatisticsCalculator(ObservableCollection<Department> departments, ObservableCollection<Position> positions, ObservableCollection<Worker> workers, ObservableCollection<Projects> projects)
         {
             _departments = departments;
             _positions = positions;
             _workers = workers;
+            _projects = projects;
         }
         
         public ObservableCollection<DepartmentStatistics> CalculateDepartmentStatistics()
@@ -53,12 +55,6 @@ namespace PersonnelManagement.Helpers
             return statistics;
         }
 
-        private decimal CalculateTotalProfit(Department department)
-        {
-            // Ваша логика для расчета TotalProfit на основе конкретного отдела
-            return 0; // Замените этот заполнитель своей реализацией
-        }
-
         private decimal CalculateBudget(Department department)
         {
             decimal departmentBudget = _workers
@@ -68,6 +64,29 @@ namespace PersonnelManagement.Helpers
             return departmentBudget;
         }
 
+        private decimal CalculateTotalProfit(Department department)
+        {
+            // Получение сотрудников отдела
+            List<Worker> workers = _workers
+                .Where(w => w.DepartmentID == department.Id)
+                .ToList();
+
+            // Получение проектов, над которыми работают сотрудники отдела
+            List<Projects> projects = _projects
+                .Where(p => workers.Any(w => p.ProjectManager == w.FullName))
+                .ToList();
+
+            // Расчет общей прибыли проектов
+            decimal totalProjectBudget = projects.Sum(p => p.ProjectBudget);
+
+            // Расчет общего бюджета отдела
+            decimal departmentBudget = CalculateBudget(department);
+
+            // Вычитание бюджета отдела из общей прибыли проектов
+            decimal totalProfit = totalProjectBudget - departmentBudget;
+
+            return totalProfit;
+        }
 
 
         private decimal CalculateEfficiency(decimal totalProfit, decimal budget)
