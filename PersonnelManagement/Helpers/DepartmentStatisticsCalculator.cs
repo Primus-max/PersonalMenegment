@@ -25,7 +25,7 @@ namespace PersonnelManagement.Helpers
             _workers = workers;
             _projects = projects;
         }
-        
+
         public ObservableCollection<DepartmentStatistics> CalculateDepartmentStatistics()
         {
             ObservableCollection<DepartmentStatistics> statistics = new ObservableCollection<DepartmentStatistics>();
@@ -40,7 +40,8 @@ namespace PersonnelManagement.Helpers
                 // Set EmployeeCount
                 departmentStats.EmployeeCount = department.EmployeesCount;
 
-                departmentStats.AllWorkers = GetWorkersInDepartment(department); 
+                departmentStats.AllWorkers = GetWorkersInDepartment(department);
+
 
                 // Calculate and set TotalProfit
                 departmentStats.TotalProfit = CalculateTotalProfit(department);
@@ -94,13 +95,13 @@ namespace PersonnelManagement.Helpers
             return totalProfit;
         }
 
-        private List<Worker> GetWorkersInDepartment(Department department)
+        private ObservableCollection<Worker> GetWorkersInDepartment(Department department)
         {
             List<Worker> workersInDepartment = _workers
                 .Where(w => w.DepartmentID == department.Id)
                 .ToList();
 
-            return workersInDepartment;
+            return new ObservableCollection<Worker>(workersInDepartment);
         }
 
 

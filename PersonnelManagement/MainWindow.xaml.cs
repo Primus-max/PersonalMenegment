@@ -23,19 +23,25 @@ namespace PersonnelManagement
     /// </summary>
     public partial class MainWindow : Window
     {
-        MainViewModel model;
+        private DataGrid _dataGridDepartmentsStatistics;
+        private MainViewModel _model;
+
         public MainWindow(DataModel data, Users users)
         {
             InitializeComponent();
-             model = new MainViewModel(data, users);
-            this.DataContext = model;
+
+            _dataGridDepartmentsStatistics = DataGridDepartmendsStatistics;
+            _model = new MainViewModel(data, users, _dataGridDepartmentsStatistics);
+            this.DataContext = _model;
 
             Closing += OnWindowClosing;
         }
 
         private void OnWindowClosing(object sender, CancelEventArgs e)
         {
-            model.CloseWindowCommand.Execute(null);
+            _model.CloseWindowCommand.Execute(null);
         }
     }
+
+
 }

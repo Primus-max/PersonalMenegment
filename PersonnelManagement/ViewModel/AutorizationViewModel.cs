@@ -44,6 +44,7 @@ namespace PersonnelManagement.ViewModel
 
             temp.IsUserAcrive = true;
             _data.Update(temp);
+            
 
             Hide();
             MainWindow main = new MainWindow(_data, temp);

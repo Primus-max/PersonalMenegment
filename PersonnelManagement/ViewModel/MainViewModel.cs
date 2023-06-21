@@ -14,6 +14,8 @@ namespace PersonnelManagement.ViewModel
     public class MainViewModel : BaseViewModel
     {
         private Users _users2;
+        private DataGrid _gridStatisticsDepartments;
+
         #region private Collection
         private ObservableCollection<Department> _departments;
         private ObservableCollection<Position> _positions;
@@ -150,6 +152,7 @@ namespace PersonnelManagement.ViewModel
         public MainViewModel(DataModel data, Users users)
         {
             _data = data;
+            //_gridStatisticsDepartments = GridStatisticsDepartments;
 
             if (users.RoleID == 1)
             {
@@ -171,16 +174,14 @@ namespace PersonnelManagement.ViewModel
                 UserProject = new ObservableCollection<ProjectsWorker>(_data.ProjectsWorkers.Where(x => x.WorkerID == users.Worker.Id).ToList());
             }
 
-            UpdateStatisticsUI();
+            UpdateStatisticsUI();            
+            GetDepatrmentsStatistics();
+        }
 
-            // Создаем экземпляр DepartmentStatisticsCalculator
-            DepartmentStatisticsCalculator statisticsCalculator = new DepartmentStatisticsCalculator(Departments, Positions, Workers, Projects);
-
-            // Вычисляем статистику отделов
-            ObservableCollection<DepartmentStatistics> departmentStatistics = statisticsCalculator.CalculateDepartmentStatistics();
-
-            // Устанавливаем значение свойства DepartmentsStatistics
-            DepartmentsStatistics = departmentStatistics;
+        public MainViewModel(DataModel data, Users users, DataGrid dataGrid)
+       : this(data, users)
+        {
+            _gridStatisticsDepartments = dataGrid;
         }
 
         #region UpdateUI
@@ -197,13 +198,17 @@ namespace PersonnelManagement.ViewModel
             }
         }
 
-        public void UpdateUI()
-        {
+        public void UpdateDepartmentsStatisticsUI()
+        {            
+            GetDepatrmentsStatistics();
+
             Application.Current.Dispatcher.Invoke(() =>
             {
-                // Пустой блок для принудительного обновления UI
+                _gridStatisticsDepartments.ItemsSource = null; // Очищаем источник данных
+                _gridStatisticsDepartments.ItemsSource = DepartmentsStatistics; // Устанавливаем обновленный источник данных
             });
         }
+
         #endregion
 
         #region Department
@@ -214,7 +219,7 @@ namespace PersonnelManagement.ViewModel
 
             Departments = _data.Departments;
 
-            UpdateUI();
+            UpdateDepartmentsStatisticsUI();
         }
 
         public void UpdateDepartment()
@@ -301,6 +306,7 @@ namespace PersonnelManagement.ViewModel
             Projects = _data.Projects;
 
             UpdateStatisticsUI();
+            UpdateDepartmentsStatisticsUI();
         }
 
         public void UpdateProjects()
@@ -475,7 +481,7 @@ namespace PersonnelManagement.ViewModel
 
             Workers = _data.Workers;
 
-            UpdateUI();
+            UpdateDepartmentsStatisticsUI();
         }
 
         public void UpdateWorker()
@@ -552,7 +558,17 @@ namespace PersonnelManagement.ViewModel
         #endregion
 
         #region Statistics
+        public void GetDepatrmentsStatistics()
+        {
+            // Создаем экземпляр DepartmentStatisticsCalculator
+            DepartmentStatisticsCalculator statisticsCalculator = new DepartmentStatisticsCalculator(Departments, Positions, Workers, Projects);
 
+            // Вычисляем статистику отделов
+            ObservableCollection<DepartmentStatistics> departmentStatistics = statisticsCalculator.CalculateDepartmentStatistics();
+
+            // Устанавливаем значение свойства DepartmentsStatistics
+            DepartmentsStatistics = departmentStatistics;
+        }
         #endregion
 
         public RelayCommand AddDepartmentCommand => new RelayCommand(AddDepartment);

@@ -21,8 +21,7 @@
         Width="900" 
         FontFamily="Cascadia Mono" 
         FontSize="16" 
-        WindowState="Maximized"
-        >
+        WindowState="Maximized">
     <Window.Resources>
         <local:SalaryConverter x:Key="SalaryConverter" />
         <local:ProfitConverter x:Key="ProfitConverter" />
@@ -422,7 +421,13 @@
                                     </TabItem.Header>
                                     <TabItem.Content>
                                         <Grid>
-                                            <DataGrid ItemsSource="{Binding DepartmentsStatistics}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                                            <DataGrid 
+                                               x:Name="DataGridDepartmendsStatistics"
+                                                ItemsSource="{Binding DepartmentsStatistics}" 
+                                                AutoGenerateColumns="False" 
+                                                     CanUserAddRows="False" 
+                                                      IsReadOnly="True" 
+                                                      Margin="5">
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn Header="Отдел" Binding="{Binding DepartmentName}" Width="*"/>
                                                     <DataGridTextColumn Header="Кол-во" Binding="{Binding EmployeeCount}" Width="auto"/>
