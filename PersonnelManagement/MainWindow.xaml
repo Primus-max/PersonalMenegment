@@ -426,12 +426,11 @@
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn Header="Отдел" Binding="{Binding DepartmentName}" Width="*"/>
                                                     <DataGridTextColumn Header="Количество сотрудников" Binding="{Binding EmployeeCount}" Width="*"/>
-                                                    <DataGridTextColumn Header="Общая прибыль" Binding="{Binding TotalProfit}" Width="*"/>
-                                                    <DataGridTextColumn Header="Бюджет" Binding="{Binding Budget}" Width="*"/>
+                                                    <DataGridTextColumn Header="Бюджет" Binding="{Binding Budget, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*"/>
+                                                    <DataGridTextColumn Header="Общая прибыль" Binding="{Binding TotalProfit, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*"/>                                                    
                                                     <DataGridTextColumn Header="Эффективность" Binding="{Binding Efficiency}" Width="*"/>
                                                 </DataGrid.Columns>
                                             </DataGrid>
-
                                         </Grid>
                                     </TabItem.Content>
                                 </TabItem>

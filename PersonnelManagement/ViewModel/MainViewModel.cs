@@ -181,7 +181,6 @@ namespace PersonnelManagement.ViewModel
 
             // Устанавливаем значение свойства DepartmentsStatistics
             DepartmentsStatistics = departmentStatistics;
-
         }
 
         #region UpdateUI
