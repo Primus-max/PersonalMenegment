@@ -422,7 +422,7 @@
                                     </TabItem.Header>
                                     <TabItem.Content>
                                         <Grid>
-                                            <DataGrid ItemsSource="{Binding DepartmentStatistics}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                                            <DataGrid ItemsSource="{Binding DepartmentsStatistics}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn Header="Отдел" Binding="{Binding DepartmentName}" Width="*"/>
                                                     <DataGridTextColumn Header="Количество сотрудников" Binding="{Binding EmployeeCount}" Width="*"/>

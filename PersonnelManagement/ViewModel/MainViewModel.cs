@@ -23,6 +23,7 @@ namespace PersonnelManagement.ViewModel
         private ObservableCollection<Worker> _workers;
         private ObservableCollection<ProjectsWorker> _userProject;
         public ObservableCollection<WorkerStatistic> _workerStatistics;
+        public ObservableCollection<DepartmentStatistics> _departmentStatistics;
         #endregion
 
         #region private Select
@@ -75,6 +76,11 @@ namespace PersonnelManagement.ViewModel
         {
             get => _workerStatistics;
             set => Set(ref _workerStatistics, value);
+        }
+        public ObservableCollection<DepartmentStatistics> DepartmentsStatistics
+        {
+            get => _departmentStatistics;
+            set => Set(ref _departmentStatistics, value);
         }
 
         #endregion
@@ -166,6 +172,16 @@ namespace PersonnelManagement.ViewModel
             }
 
             UpdateStatisticsUI();
+
+            // Создаем экземпляр DepartmentStatisticsCalculator
+            DepartmentStatisticsCalculator statisticsCalculator = new DepartmentStatisticsCalculator(Departments, Positions);
+
+            // Вычисляем статистику отделов
+            ObservableCollection<DepartmentStatistics> departmentStatistics = statisticsCalculator.CalculateDepartmentStatistics();
+
+            // Устанавливаем значение свойства DepartmentsStatistics
+            DepartmentsStatistics = departmentStatistics;
+
         }
 
         #region UpdateUI
@@ -534,6 +550,10 @@ namespace PersonnelManagement.ViewModel
             ProjectsWorkers = _data.ProjectsWorkers;
             Users = _data.Users;
         }
+        #endregion
+
+        #region Statistics
+
         #endregion
 
         public RelayCommand AddDepartmentCommand => new RelayCommand(AddDepartment);
