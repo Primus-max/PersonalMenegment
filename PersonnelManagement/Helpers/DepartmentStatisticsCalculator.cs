@@ -85,6 +85,8 @@ namespace PersonnelManagement.Helpers
             // Вычитание бюджета отдела из общей прибыли проектов
             decimal totalProfit = totalProjectBudget - departmentBudget;
 
+            if (totalProfit < 0) totalProfit = 0;
+
             return totalProfit;
         }
 

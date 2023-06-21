@@ -118,6 +118,7 @@
     <Compile Include="ViewModel\AutorizationViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Converters\IsActiveToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\Converters\ProfitConverter.cs" />
     <Compile Include="ViewModel\Converters\ProjectStatusConverter.cs" />
     <Compile Include="ViewModel\Converters\SalaryConverter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

@@ -25,7 +25,7 @@
         >
     <Window.Resources>
         <local:SalaryConverter x:Key="SalaryConverter" />
-        <local:IsActiveToVisibilityConverter x:Key="IsActiveToVisibilityConverter" />
+        <local:ProfitConverter x:Key="ProfitConverter" />
     </Window.Resources>
     
     <Border Padding="5">        
@@ -427,7 +427,7 @@
                                                     <DataGridTextColumn Header="Отдел" Binding="{Binding DepartmentName}" Width="*"/>
                                                     <DataGridTextColumn Header="Количество сотрудников" Binding="{Binding EmployeeCount}" Width="*"/>
                                                     <DataGridTextColumn Header="Бюджет" Binding="{Binding Budget, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*"/>
-                                                    <DataGridTextColumn Header="Общая прибыль" Binding="{Binding TotalProfit, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*"/>                                                    
+                                                    <DataGridTextColumn Header="Общая прибыль" Binding="{Binding TotalProfit, StringFormat={}{0}, Converter={StaticResource ProfitConverter}}" Width="*"/>                                                    
                                                     <DataGridTextColumn Header="Эффективность" Binding="{Binding Efficiency}" Width="*"/>
                                                 </DataGrid.Columns>
                                             </DataGrid>

@@ -80,7 +80,7 @@ namespace PersonnelManagement.ViewModel
         public ObservableCollection<DepartmentStatistics> DepartmentsStatistics
         {
             get => _departmentStatistics;
-            set => 1Set(ref _departmentStatistics, value);
+            set => Set(ref _departmentStatistics, value);
         }
 
         #endregion
