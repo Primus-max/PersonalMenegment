@@ -15,13 +15,15 @@ namespace PersonnelManagement.Helpers
     {
         private ObservableCollection<Department> _departments;
         private ObservableCollection<Position> _positions;
+        private ObservableCollection<Worker> _workers;
 
-        public DepartmentStatisticsCalculator(ObservableCollection<Department> departments, ObservableCollection<Position> positions)
+        public DepartmentStatisticsCalculator(ObservableCollection<Department> departments, ObservableCollection<Position> positions, ObservableCollection<Worker> workers)
         {
             _departments = departments;
             _positions = positions;
+            _workers = workers;
         }
-
+        
         public ObservableCollection<DepartmentStatistics> CalculateDepartmentStatistics()
         {
             ObservableCollection<DepartmentStatistics> statistics = new ObservableCollection<DepartmentStatistics>();
@@ -40,7 +42,7 @@ namespace PersonnelManagement.Helpers
                 departmentStats.TotalProfit = CalculateTotalProfit(department);
 
                 // Calculate and set Budget
-                departmentStats.Budget = CalculateBudget();
+                departmentStats.Budget = CalculateBudget(department);
 
                 // Calculate and set Efficiency
                 departmentStats.Efficiency = CalculateEfficiency(departmentStats.TotalProfit, departmentStats.Budget);
@@ -57,12 +59,16 @@ namespace PersonnelManagement.Helpers
             return 0; // Замените этот заполнитель своей реализацией
         }
 
-        private decimal CalculateBudget()
+        private decimal CalculateBudget(Department department)
         {
-            // Ваша логика для расчета Budget на основе коллекции _positions
-            // Например, если вы хотите суммировать все зарплаты из каждой должности, вы можете использовать:
-            return _positions.Sum(p => p.Salary);
+            decimal departmentBudget = _workers
+                .Where(w => w.DepartmentID == department.Id)
+                .Sum(w => _positions.FirstOrDefault(p => p.Id == w.PositionID)?.Salary ?? 0);
+
+            return departmentBudget;
         }
+
+
 
         private decimal CalculateEfficiency(decimal totalProfit, decimal budget)
         {

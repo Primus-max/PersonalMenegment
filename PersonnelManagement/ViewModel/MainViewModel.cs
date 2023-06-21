@@ -174,7 +174,7 @@ namespace PersonnelManagement.ViewModel
             UpdateStatisticsUI();
 
             // Создаем экземпляр DepartmentStatisticsCalculator
-            DepartmentStatisticsCalculator statisticsCalculator = new DepartmentStatisticsCalculator(Departments, Positions);
+            DepartmentStatisticsCalculator statisticsCalculator = new DepartmentStatisticsCalculator(Departments, Positions, Workers);
 
             // Вычисляем статистику отделов
             ObservableCollection<DepartmentStatistics> departmentStatistics = statisticsCalculator.CalculateDepartmentStatistics();
