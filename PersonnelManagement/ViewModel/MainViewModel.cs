@@ -15,6 +15,7 @@ namespace PersonnelManagement.ViewModel
     {
         private Users _users2;
         private DataGrid _gridStatisticsDepartments;
+        private DataGrid _dataGridDepartments;
 
         #region private Collection
         private ObservableCollection<Department> _departments;
@@ -178,10 +179,11 @@ namespace PersonnelManagement.ViewModel
             GetDepatrmentsStatistics();
         }
 
-        public MainViewModel(DataModel data, Users users, DataGrid dataGrid)
+        public MainViewModel(DataModel data, Users users, DataGrid dataGridStatisticsDepartments, DataGrid dataGridDepartments)
        : this(data, users)
         {
-            _gridStatisticsDepartments = dataGrid;
+            _gridStatisticsDepartments = dataGridStatisticsDepartments;
+            _dataGridDepartments = dataGridDepartments;
         }
 
         #region UpdateUI
@@ -209,6 +211,14 @@ namespace PersonnelManagement.ViewModel
             });
         }
 
+        public void UpDateDepartmentsUI()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                _dataGridDepartments.ItemsSource = null; // Очищаем источник данных
+                _dataGridDepartments.ItemsSource = _data.Departments;  // Устанавливаем обновленный источник данных
+            });
+        }
         #endregion
 
         #region Department
@@ -482,6 +492,7 @@ namespace PersonnelManagement.ViewModel
             Workers = _data.Workers;
 
             UpdateDepartmentsStatisticsUI();
+            UpDateDepartmentsUI();
         }
 
         public void UpdateWorker()
@@ -498,6 +509,8 @@ namespace PersonnelManagement.ViewModel
             Workers = _data.Workers;
             ProjectsWorkers = _data.ProjectsWorkers;
             Users = _data.Users;
+
+            UpDateDepartmentsUI();
         }
 
         public void RemoveWorker()
@@ -539,6 +552,7 @@ namespace PersonnelManagement.ViewModel
                     break;
                 }
             }
+            UpDateDepartmentsUI();
         }
 
         public void RemoveWorker(Worker worker)
@@ -554,6 +568,8 @@ namespace PersonnelManagement.ViewModel
             Workers = _data.Workers;
             ProjectsWorkers = _data.ProjectsWorkers;
             Users = _data.Users;
+
+            UpDateDepartmentsUI();
         }
         #endregion
 

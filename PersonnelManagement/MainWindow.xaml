@@ -149,6 +149,7 @@
                         </Grid.RowDefinitions>
 
                             <DataGrid 
+                                  x:Name="DataGridDepartments"
                                   ItemsSource="{Binding Departments, UpdateSourceTrigger=PropertyChanged}" 
                                   SelectedValue="{Binding SelectDepartment}" 
                                   AutoGenerateColumns="False" 

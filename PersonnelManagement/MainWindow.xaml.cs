@@ -24,6 +24,7 @@ namespace PersonnelManagement
     public partial class MainWindow : Window
     {
         private DataGrid _dataGridDepartmentsStatistics;
+        private DataGrid _dataGridDepartments;
         private MainViewModel _model;
 
         public MainWindow(DataModel data, Users users)
@@ -31,7 +32,8 @@ namespace PersonnelManagement
             InitializeComponent();
 
             _dataGridDepartmentsStatistics = DataGridDepartmendsStatistics;
-            _model = new MainViewModel(data, users, _dataGridDepartmentsStatistics);
+            _dataGridDepartments = DataGridDepartments;
+            _model = new MainViewModel(data, users, _dataGridDepartmentsStatistics, _dataGridDepartments);
             this.DataContext = _model;
 
             Closing += OnWindowClosing;
