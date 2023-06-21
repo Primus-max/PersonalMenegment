@@ -55,6 +55,7 @@ namespace PersonnelManagement.Helpers
             return statistics;
         }
 
+        // Считаю бюджет отдела
         private decimal CalculateBudget(Department department)
         {
             decimal departmentBudget = _workers
@@ -64,6 +65,7 @@ namespace PersonnelManagement.Helpers
             return departmentBudget;
         }
 
+        // Считаю прибыль отдела
         private decimal CalculateTotalProfit(Department department)
         {
             // Получение сотрудников отдела
@@ -90,13 +92,17 @@ namespace PersonnelManagement.Helpers
             return totalProfit;
         }
 
-
         private decimal CalculateEfficiency(decimal totalProfit, decimal budget)
         {
-            // Ваша логика для расчета Efficiency на основе totalProfit и budget
-            // Реализуйте расчет на основе ваших требований
-            return 0; // Замените этот заполнитель своей реализацией
+            if (budget == 0)
+            {
+                return 0; // Избегаем деления на ноль
+            }
+
+            decimal efficiency = totalProfit / budget;
+            return efficiency;
         }
+
     }
 
 }
