@@ -10,6 +10,7 @@ namespace PersonnelManagement.Model
     {
         public string DepartmentName { get; set; }
         public int EmployeeCount { get; set; }
+        public List<Worker> AllWorkers { get; set; }
         public decimal TotalProfit { get; set; }
         public decimal Budget { get; set; }
         public decimal Efficiency { get; set; }

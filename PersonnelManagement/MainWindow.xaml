@@ -365,7 +365,7 @@
                                 <TabItem>
                                     <TabItem.Header>
                                         <TextBlock FontSize="16" TextAlignment="Center">
-                                            <Run Text="Работники"/>
+                                            <Run Text="Сотрудники"/>
                                         </TextBlock>
                                     </TabItem.Header>
                                     <TabItem.Content>
@@ -402,7 +402,7 @@
                                         </Grid>
                                     </TabItem.Content>
                                 </TabItem>
-                                <TabItem>
+                                <!--<TabItem>
                                     <TabItem.Header>
                                         <TextBlock FontSize="16" TextAlignment="Center">
                                             <Run Text="Проекты"/>
@@ -410,10 +410,10 @@
                                     </TabItem.Header>
                                     <TabItem.Content>
                                         <Grid>
-                                            <!-- Код для вкладки "Проекты" -->
+                                            --><!-- Код для вкладки "Проекты" --><!--
                                         </Grid>
                                     </TabItem.Content>
-                                </TabItem>
+                                </TabItem>-->
                                 <TabItem>
                                     <TabItem.Header>
                                         <TextBlock FontSize="16" TextAlignment="Center">
@@ -425,7 +425,16 @@
                                             <DataGrid ItemsSource="{Binding DepartmentsStatistics}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn Header="Отдел" Binding="{Binding DepartmentName}" Width="*"/>
-                                                    <DataGridTextColumn Header="Количество сотрудников" Binding="{Binding EmployeeCount}" Width="*"/>
+                                                    <DataGridTextColumn Header="Кол-во" Binding="{Binding EmployeeCount}" Width="auto"/>
+                                                    <DataGridTemplateColumn Header="Сотрудники" Width="*">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <ComboBox ItemsSource="{Binding AllWorkers}" 
+                                                                          DisplayMemberPath="FullName" 
+                                                                          SelectedItem="{Binding AllWorkers[0]}" />
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
                                                     <DataGridTextColumn Header="Бюджет" Binding="{Binding Budget, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*"/>
                                                     <DataGridTextColumn Header="Общая прибыль" Binding="{Binding TotalProfit, StringFormat={}{0}, Converter={StaticResource ProfitConverter}}" Width="*"/>
                                                     <DataGridTemplateColumn Header="Эффективность" Width="*">
