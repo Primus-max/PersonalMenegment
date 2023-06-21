@@ -427,8 +427,19 @@
                                                     <DataGridTextColumn Header="Отдел" Binding="{Binding DepartmentName}" Width="*"/>
                                                     <DataGridTextColumn Header="Количество сотрудников" Binding="{Binding EmployeeCount}" Width="*"/>
                                                     <DataGridTextColumn Header="Бюджет" Binding="{Binding Budget, StringFormat={}{0}, Converter={StaticResource SalaryConverter}}" Width="*"/>
-                                                    <DataGridTextColumn Header="Общая прибыль" Binding="{Binding TotalProfit, StringFormat={}{0}, Converter={StaticResource ProfitConverter}}" Width="*"/>                                                    
-                                                    <DataGridTextColumn Header="Эффективность" Binding="{Binding Efficiency}" Width="*"/>
+                                                    <DataGridTextColumn Header="Общая прибыль" Binding="{Binding TotalProfit, StringFormat={}{0}, Converter={StaticResource ProfitConverter}}" Width="*"/>
+                                                    <DataGridTemplateColumn Header="Эффективность" Width="*">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <ProgressBar 
+                                                                    Value="{Binding Efficiency}" 
+                                                                    Minimum="0" 
+                                                                    Maximum="100"                                                                    
+                                                                    Height="10" Background="#FFFB6E6E" Foreground="#FF00BF09"
+                                                                    />
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
                                                 </DataGrid.Columns>
                                             </DataGrid>
                                         </Grid>
